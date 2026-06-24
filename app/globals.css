@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -21,9 +21,9 @@
   --color-danger:       var(--color-brick);
 
   /* Typography */
-  --font-display:       'Syne', sans-serif;
-  --font-body:          'Inter', sans-serif;
-  --font-arabic:        'Noto Naskh Arabic', serif;
+  --font-display:       'Bricolage Grotesque', sans-serif;
+  --font-body:          'Plus Jakarta Sans', sans-serif;
+  --font-arabic:        'Noto Sans Arabic', sans-serif;
 
   /* Border Radius */
   --radius-sm:   8px;
@@ -48,9 +48,9 @@
   --color-brick: #E8472A;
   --color-success: #27AE60;
   --color-border: #E0DDD8;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-arabic: 'Noto Naskh Arabic', serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-arabic: 'Noto Sans Arabic', sans-serif;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;

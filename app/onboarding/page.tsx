@@ -22,7 +22,7 @@ const SLIDES = [
     emoji: '📅',
     title_fr: 'Réservez en 2 clics',
     title_dr: 'احجز بضغطتين فقط',
-    desc_fr: "Choisissez votre créneau, confirmez et c'est parti. Simple et rapide.",
+    desc_fr: 'Choisissez votre créneau, confirmez et c\'est parti. Simple et rapide.',
     desc_dr: 'اختار الوقت المناسب وأكد — وهاك ! بسيط وسريع.',
     bg: '#0D1F16',
     glow: '#27AE60',
@@ -50,11 +50,7 @@ export default function OnboardingPage() {
   const slide = SLIDES[current];
   const isLast = current === SLIDES.length - 1;
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem('onboarding_done')) {
-      router.replace('/auth/login');
-    }
-  }, [router]);
+  // intentionally no redirect — onboarding is always accessible
 
   const goTo = (index: number) => {
     if (fading || index === current) return;
@@ -105,7 +101,7 @@ export default function OnboardingPage() {
       />
 
       {/* Top bar */}
-      <div className="relative flex items-center justify-between px-6 pt-8 pb-2">
+      <div className="relative flex items-center justify-between px-6 pt-safe pt-8 pb-2">
         <LangSwitch />
         <button
           onClick={finish}
@@ -154,7 +150,7 @@ export default function OnboardingPage() {
       </div>
 
       {/* Bottom controls */}
-      <div className="relative px-6 pb-10">
+      <div className="relative px-6 pb-safe pb-10">
         {/* Step dots */}
         <div className="flex items-center justify-center gap-2 mb-8">
           {SLIDES.map((_, i) => (
