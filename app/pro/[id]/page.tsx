@@ -24,7 +24,7 @@ export default function ProPage({ params }: { params: Promise<{ id: string }> })
   const bio = lang === 'dr' ? pro.bio_dr : pro.bio_fr;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 pb-36 md:pb-28">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 pb-52 md:pb-28">
       {/* Back */}
       <button
         onClick={() => router.back()}
@@ -52,7 +52,7 @@ export default function ProPage({ params }: { params: Promise<{ id: string }> })
               online
               className="border-4 border-white rounded-full"
             />
-            <div className="pb-2 min-w-0 flex-1">
+            <div className="pb-2">
               <div className="flex items-center gap-2 flex-wrap">
                 <h1 className="text-xl font-display font-bold text-[#1A1614]">
                   {pro.user?.full_name}
