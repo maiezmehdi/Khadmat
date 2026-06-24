@@ -33,10 +33,14 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-[#1A1614] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #F5A623 0%, transparent 50%), radial-gradient(circle at 80% 20%, #F5A623 0%, transparent 40%)' }}
+      <section className="text-white relative overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/hero-bg.jpg)' }}
         />
+        {/* Dark overlay so text is readable */}
+        <div className="absolute inset-0 bg-[#1A1614]/70" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-[#F5A623]/20 text-[#F5A623] text-sm font-medium px-3 py-1.5 rounded-full mb-6">
