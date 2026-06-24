@@ -44,7 +44,8 @@ export default function ProPage({ params }: { params: Promise<{ id: string }> })
         </div>
 
         <div className="px-5 pb-6">
-          <div className="flex items-end gap-4 -mt-10 mb-4">
+          {/* Avatar — overlaps cover */}
+          <div className="-mt-12 mb-3">
             <Avatar
               src={pro.user?.avatar_url}
               name={pro.user?.full_name ?? ''}
@@ -52,31 +53,33 @@ export default function ProPage({ params }: { params: Promise<{ id: string }> })
               online
               className="border-4 border-white rounded-full"
             />
-            <div className="pb-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h1 className="text-xl font-display font-bold text-[#1A1614]">
-                  {pro.user?.full_name}
-                </h1>
-                {pro.is_approved && (
-                  <Badge variant="success" className="flex items-center gap-1">
-                    <CheckCircle size={11} />
-                    {t('verified')}
-                  </Badge>
-                )}
-                {pro.subscription === 'premium' && (
-                  <Badge variant="active">Premium ⭐</Badge>
-                )}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-[#9C9189] mt-1 flex-wrap">
-                <MapPin size={13} />
-                <span>{pro.user?.city}</span>
-                {pro.years_exp && (
-                  <>
-                    <span>·</span>
-                    <span>{pro.years_exp} {t('years_exp')}</span>
-                  </>
-                )}
-              </div>
+          </div>
+
+          {/* Name + badges + location — fully below cover */}
+          <div className="mb-4">
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-xl font-display font-bold text-[#1A1614]">
+                {pro.user?.full_name}
+              </h1>
+              {pro.is_approved && (
+                <Badge variant="success" className="flex items-center gap-1">
+                  <CheckCircle size={11} />
+                  {t('verified')}
+                </Badge>
+              )}
+              {pro.subscription === 'premium' && (
+                <Badge variant="active">Premium ⭐</Badge>
+              )}
+            </div>
+            <div className="flex items-center gap-2 text-sm text-[#9C9189] mt-1 flex-wrap">
+              <MapPin size={13} />
+              <span>{pro.user?.city}</span>
+              {pro.years_exp && (
+                <>
+                  <span>·</span>
+                  <span>{pro.years_exp} {t('years_exp')}</span>
+                </>
+              )}
             </div>
           </div>
 
@@ -171,7 +174,9 @@ export default function ProPage({ params }: { params: Promise<{ id: string }> })
         <div className="max-w-3xl mx-auto">
           <Link href={`/booking?pro=${pro.id}`}>
             <Button fullWidth size="lg" className="shadow-xl">
-              {t('book_now')} — {t('price_from')} {pro.services?.[0]?.price_from} DT
+              {lang === 'dr'
+                ? `احجز الآن · ${pro.services?.[0]?.price_from} DT`
+                : `Réserver · dès ${pro.services?.[0]?.price_from} DT`}
             </Button>
           </Link>
         </div>
