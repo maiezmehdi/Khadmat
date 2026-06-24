@@ -8,7 +8,8 @@ import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Khadamat — خدامات | Les pros du quotidien',
-  description: 'Trouvez, comparez et réservez des artisans vérifiés en Tunisie.',
+  description: 'Trouvez, comparez et réservez des artisans vérifiés en Tunisie. Plombiers, électriciens, femmes de ménage et plus.',
+  keywords: 'artisans, tunisie, services, réservation, plombier, électricien',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,16 +1,23 @@
 'use client';
+
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Lang } from './i18n';
 import { User } from '@/types';
 
 interface AppContextType {
-  lang: Lang; setLang: (lang: Lang) => void;
-  user: User | null; setUser: (user: User | null) => void;
+  lang: Lang;
+  setLang: (lang: Lang) => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
   isRTL: boolean;
 }
 
 const AppContext = createContext<AppContextType>({
-  lang: 'fr', setLang: () => {}, user: null, setUser: () => {}, isRTL: false,
+  lang: 'fr',
+  setLang: () => {},
+  user: null,
+  setUser: () => {},
+  isRTL: false,
 });
 
 export function AppProvider({ children }: { children: ReactNode }) {
@@ -41,4 +48,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useApp() { return useContext(AppContext); }
+export function useApp() {
+  return useContext(AppContext);
+}

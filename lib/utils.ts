@@ -11,13 +11,21 @@ export function formatPrice(amount: number): string {
 
 export function formatDate(dateStr: string, lang: 'fr' | 'dr'): string {
   const date = new Date(dateStr);
-  if (lang === 'dr') return date.toLocaleDateString('ar-TN', { day: 'numeric', month: 'long', year: 'numeric' });
+  if (lang === 'dr') {
+    return date.toLocaleDateString('ar-TN', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
   return date.toLocaleDateString('fr-TN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 export function formatDateTime(dateStr: string): string {
   const date = new Date(dateStr);
-  return date.toLocaleDateString('fr-TN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  return date.toLocaleDateString('fr-TN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
 
 export function getStatusColor(status: string): string {
