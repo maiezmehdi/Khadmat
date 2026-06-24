@@ -1,0 +1,107 @@
+import { Category, ProProfile, Booking, Review } from '@/types';
+
+export const CATEGORIES: Category[] = [
+  { id: '1', slug: 'plomberie', name_fr: 'Plomberie', name_dr: 'سبّاكة', icon: '🔧', color: '#3B82F6', sort_order: 1, is_active: true },
+  { id: '2', slug: 'electricite', name_fr: 'Électricité', name_dr: 'كهرباء', icon: '⚡', color: '#F59E0B', sort_order: 2, is_active: true },
+  { id: '3', slug: 'menage', name_fr: 'Ménage', name_dr: 'تنظيف', icon: '🏠', color: '#10B981', sort_order: 3, is_active: true },
+  { id: '4', slug: 'peinture', name_fr: 'Peinture', name_dr: 'صباغة', icon: '🎨', color: '#8B5CF6', sort_order: 4, is_active: true },
+  { id: '5', slug: 'jardinage', name_fr: 'Jardinage', name_dr: 'بستنة', icon: '🌿', color: '#22C55E', sort_order: 5, is_active: true },
+  { id: '6', slug: 'climatisation', name_fr: 'Climatisation', name_dr: 'تكييف', icon: '❄️', color: '#06B6D4', sort_order: 6, is_active: true },
+  { id: '7', slug: 'demenagement', name_fr: 'Déménagement', name_dr: 'نقل عفش', icon: '🚚', color: '#F97316', sort_order: 7, is_active: true },
+  { id: '8', slug: 'informatique', name_fr: 'Informatique', name_dr: 'كمبيوتر', icon: '💻', color: '#6366F1', sort_order: 8, is_active: true },
+];
+
+export const PROS: ProProfile[] = [
+  {
+    id: '1', user_id: 'u1',
+    user: { id: 'u1', phone: '+21698123456', full_name: 'Mohamed Ben Ali', avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop', role: 'pro', lang_pref: 'fr', city: 'Tunis', is_verified: true, created_at: '2024-01-15' },
+    bio_fr: "Plombier professionnel avec 12 ans d'expérience. Intervention rapide 7j/7.",
+    bio_dr: 'سبّاك محترف مع 12 سنة خبرة. تدخل سريع 7 أيام / 7.',
+    years_exp: 12, is_approved: true, subscription: 'premium', rating_avg: 4.8, rating_count: 127, response_time: 15, radius_km: 15,
+    services: [{ id: 's1', pro_id: '1', category_id: '1', price_from: 40, price_to: 150, price_unit: 'heure', is_active: true }],
+  },
+  {
+    id: '2', user_id: 'u2',
+    user: { id: 'u2', phone: '+21697654321', full_name: 'Sami Trabelsi', avatar_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop', role: 'pro', lang_pref: 'fr', city: 'Tunis', is_verified: true, created_at: '2024-02-10' },
+    bio_fr: 'Électricien certifié, installations résidentielles et commerciales.',
+    bio_dr: 'كهربائي معتمد، تركيبات سكنية وتجارية.',
+    years_exp: 8, is_approved: true, subscription: 'basic', rating_avg: 4.6, rating_count: 89, response_time: 20, radius_km: 20,
+    services: [{ id: 's2', pro_id: '2', category_id: '2', price_from: 50, price_to: 200, price_unit: 'forfait', is_active: true }],
+  },
+  {
+    id: '3', user_id: 'u3',
+    user: { id: 'u3', phone: '+21694789012', full_name: 'Fatma Gharbi', avatar_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop', role: 'pro', lang_pref: 'dr', city: 'Tunis', is_verified: true, created_at: '2024-01-28' },
+    bio_fr: 'Service de ménage professionnel, produits écologiques disponibles.',
+    bio_dr: 'خدمة تنظيف احترافية، منتجات بيئية متوفرة.',
+    years_exp: 5, is_approved: true, subscription: 'premium', rating_avg: 4.9, rating_count: 203, response_time: 10, radius_km: 10,
+    services: [{ id: 's3', pro_id: '3', category_id: '3', price_from: 25, price_to: 80, price_unit: 'heure', is_active: true }],
+  },
+  {
+    id: '4', user_id: 'u4',
+    user: { id: 'u4', phone: '+21693456789', full_name: 'Karim Mansouri', avatar_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop', role: 'pro', lang_pref: 'fr', city: 'Sfax', is_verified: true, created_at: '2024-03-05' },
+    bio_fr: 'Peintre décorateur, intérieur et extérieur, finitions soignées.',
+    bio_dr: 'صبّاغ ديكور، داخلي وخارجي، تشطيب عالي الجودة.',
+    years_exp: 15, is_approved: true, subscription: 'free', rating_avg: 4.7, rating_count: 56, response_time: 30, radius_km: 25,
+    services: [{ id: 's4', pro_id: '4', category_id: '4', price_from: 100, price_to: 500, price_unit: 'forfait', is_active: true }],
+  },
+  {
+    id: '5', user_id: 'u5',
+    user: { id: 'u5', phone: '+21691234567', full_name: 'Youssef Hamdi', avatar_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop', role: 'pro', lang_pref: 'fr', city: 'Sousse', is_verified: true, created_at: '2024-02-20' },
+    bio_fr: 'Technicien climatisation agréé, installation, entretien et réparation.',
+    bio_dr: 'تقني تكييف معتمد، تركيب وصيانة وإصلاح.',
+    years_exp: 7, is_approved: true, subscription: 'basic', rating_avg: 4.5, rating_count: 74, response_time: 25, radius_km: 30,
+    services: [{ id: 's5', pro_id: '5', category_id: '6', price_from: 80, price_to: 300, price_unit: 'forfait', is_active: true }],
+  },
+  {
+    id: '6', user_id: 'u6',
+    user: { id: 'u6', phone: '+21699876543', full_name: 'Anis Bouazizi', avatar_url: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=150&h=150&fit=crop', role: 'pro', lang_pref: 'dr', city: 'Tunis', is_verified: true, created_at: '2024-01-10' },
+    bio_fr: 'Technicien informatique, dépannage PC, réseau, récupération de données.',
+    bio_dr: 'تقني كمبيوتر، إصلاح PC، شبكات، استرجاع بيانات.',
+    years_exp: 6, is_approved: true, subscription: 'premium', rating_avg: 4.8, rating_count: 112, response_time: 12, radius_km: 20,
+    services: [{ id: 's6', pro_id: '6', category_id: '8', price_from: 30, price_to: 100, price_unit: 'heure', is_active: true }],
+  },
+];
+
+export const REVIEWS: Review[] = [
+  {
+    id: 'r1', booking_id: 'b1', client_id: 'c1', pro_id: '1',
+    client: { id: 'c1', phone: '+21698000001', full_name: 'Nour Belhaj', role: 'client', lang_pref: 'fr', is_verified: true, created_at: '2024-01-01' },
+    rating: 5, comment_fr: 'Excellent travail, très professionnel et ponctuel. Je recommande vivement !',
+    comment_dr: 'خدمة ممتازة، محترف وفي وقته. ننصح بيه !', is_verified: true, created_at: '2024-03-10',
+  },
+  {
+    id: 'r2', booking_id: 'b2', client_id: 'c2', pro_id: '1',
+    client: { id: 'c2', phone: '+21698000002', full_name: 'Amine Riahi', role: 'client', lang_pref: 'fr', is_verified: true, created_at: '2024-01-01' },
+    rating: 5, comment_fr: 'Très satisfait. Problème résolu rapidement et proprement.', is_verified: true, created_at: '2024-03-05',
+  },
+  {
+    id: 'r3', booking_id: 'b3', client_id: 'c3', pro_id: '3',
+    client: { id: 'c3', phone: '+21698000003', full_name: 'Sarra Ben Salah', role: 'client', lang_pref: 'fr', is_verified: true, created_at: '2024-01-01' },
+    rating: 5, comment_fr: 'Fatma est remarquable ! Appartement impeccable après son passage.',
+    comment_dr: 'فاطمة رائعة! الشقة لمعت بعد جيتها.', is_verified: true, created_at: '2024-03-12',
+  },
+];
+
+export const BOOKINGS: Booking[] = [
+  {
+    id: 'b1', client_id: 'me', pro_id: '1', pro: PROS[0], category_id: '1', category: CATEGORIES[0],
+    status: 'confirmed', scheduled_at: '2024-04-15T10:00:00', address: '12 Rue de Carthage, Tunis', city: 'Tunis',
+    price_quoted: 80, payment_method: 'cod', payment_status: 'pending', created_at: '2024-04-10',
+  },
+  {
+    id: 'b2', client_id: 'me', pro_id: '3', pro: PROS[2], category_id: '3', category: CATEGORIES[2],
+    status: 'completed', scheduled_at: '2024-03-20T09:00:00', address: '5 Avenue Habib Bourguiba, Tunis', city: 'Tunis',
+    price_quoted: 60, price_final: 60, payment_method: 'cod', payment_status: 'paid', created_at: '2024-03-15',
+  },
+  {
+    id: 'b3', client_id: 'me', pro_id: '2', pro: PROS[1], category_id: '2', category: CATEGORIES[1],
+    status: 'cancelled', scheduled_at: '2024-03-10T14:00:00', address: '8 Rue Ibn Khaldoun, Tunis', city: 'Tunis',
+    price_quoted: 100, payment_method: 'cod', payment_status: 'pending', created_at: '2024-03-08',
+  },
+];
+
+export const INDICATIVE_PRICES = [
+  { category: 'plomberie', min: 40, max: 150 }, { category: 'electricite', min: 50, max: 200 },
+  { category: 'menage', min: 25, max: 80 }, { category: 'peinture', min: 100, max: 500 },
+  { category: 'jardinage', min: 30, max: 120 }, { category: 'climatisation', min: 80, max: 300 },
+];
