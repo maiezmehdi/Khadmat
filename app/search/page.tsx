@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Search, SlidersHorizontal, X, Map, List, MapPin } from 'lucide-react';
 import { ProCard } from '@/components/blocks/ProCard';
 import { ProMap } from '@/components/blocks/ProMap';
+import { CategoryIcon } from '@/components/ui/CategoryIcon';
 import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
 import { useTranslation } from '@/lib/i18n';
@@ -145,7 +146,7 @@ function SearchContent() {
             onClick={() => setCategory(category === cat.slug ? '' : cat.slug)}
             className={cn('flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-colors', category === cat.slug ? 'bg-[#111827] text-white border-[#111827]' : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:border-[#111827]')}
           >
-            <span>{cat.icon}</span>
+            <CategoryIcon slug={cat.slug} size={14} color={category === cat.slug ? 'white' : cat.color} />
             <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? cat.name_dr : cat.name_fr}</span>
           </button>
         ))}

@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { CheckCircle, Upload, ArrowLeft, Camera, User } from 'lucide-react';
+import { CategoryIcon } from '@/components/ui/CategoryIcon';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
@@ -229,7 +230,7 @@ export default function RegisterProPage() {
                     : 'border-[#E5E7EB] bg-white hover:border-[#6B7280]'
                 )}
               >
-                <span className="text-2xl">{cat.icon}</span>
+                <CategoryIcon slug={cat.slug} size={22} color={cat.color} />
                 <span className={`text-xs font-medium text-center leading-tight ${lang === 'dr' ? 'font-arabic' : ''}`}>
                   {lang === 'dr' ? cat.name_dr : cat.name_fr}
                 </span>

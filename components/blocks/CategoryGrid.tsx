@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Category } from '@/types';
 import { useApp } from '@/lib/context';
 import { cn } from '@/lib/utils';
+import { CategoryIcon } from '@/components/ui/CategoryIcon';
 
 interface CategoryGridProps {
   categories: Category[];
@@ -51,7 +52,7 @@ function CategoryItem({ cat, lang, active }: { cat: Category; lang: string; acti
             border: active ? 'none' : `1.5px solid ${cat.color}44`,
           }}
         >
-          <span className="text-[26px] leading-none">{cat.icon}</span>
+          <CategoryIcon slug={cat.slug} size={24} color={active ? 'rgba(255,255,255,0.9)' : cat.color} />
         </div>
         <span className={cn(
           'text-[11px] font-semibold text-center leading-tight line-clamp-2',

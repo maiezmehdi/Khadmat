@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Search, Star, Shield, Clock, ChevronRight, ArrowRight } from 'lucide-react';
 import { motion, type Variants } from 'framer-motion';
 import { CategoryGrid } from '@/components/blocks/CategoryGrid';
+import { CategoryIcon } from '@/components/ui/CategoryIcon';
 import { ProCard } from '@/components/blocks/ProCard';
 import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
@@ -205,7 +206,7 @@ export default function HomePage() {
                         className="w-10 h-10 rounded-[10px] flex items-center justify-center flex-shrink-0"
                         style={{ backgroundColor: `${cat.color}22` }}
                       >
-                        <span className="text-xl leading-none">{cat.icon}</span>
+                        <CategoryIcon slug={cat.slug} size={20} color={cat.color} />
                       </div>
                       <span className={`text-sm font-medium text-[#111827] flex-1 ${lang === 'dr' ? 'font-arabic' : ''}`}>
                         {lang === 'dr' ? cat.name_dr : cat.name_fr}
