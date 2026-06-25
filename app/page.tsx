@@ -83,7 +83,7 @@ export default function HomePage() {
                 { label: lang === 'dr' ? 'تقييم متوسط' : 'Note moyenne', value: '4.8★' },
               ].map(stat => (
                 <div key={stat.label} className="text-center">
-                  <p className="text-2xl font-display font-bold text-[#10B981]">{stat.value}</p>
+                  <p className="text-2xl font-display font-bold text-white">{stat.value}</p>
                   <p className={`text-xs text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>{stat.label}</p>
                 </div>
               ))}
