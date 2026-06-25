@@ -61,12 +61,17 @@ export default function RegisterProPage() {
         <h2 className={`text-2xl font-display font-bold text-[#1A1614] mb-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'تم تقديم طلبك!' : 'Candidature envoyée !'}
         </h2>
-        <p className={`text-[#9C9189] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <p className={`text-[#9C9189] mb-6 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr'
             ? 'سيتصل بيك فريق خدامات خلال 24-48 ساعة للتحقق من ملفك.'
             : 'Notre équipe vous contactera sous 24–48h pour valider votre dossier.'}
         </p>
-        <Button onClick={() => router.push('/')} fullWidth size="lg">
+        <Button onClick={() => router.push('/subscription')} fullWidth size="lg" className="mb-3">
+          <span className={lang === 'dr' ? 'font-arabic' : ''}>
+            {lang === 'dr' ? 'اختار خطة الاشتراك ⭐' : 'Choisir mon abonnement ⭐'}
+          </span>
+        </Button>
+        <Button onClick={() => router.push('/')} fullWidth size="lg" variant="ghost">
           {lang === 'dr' ? 'ارجع للرئيسية' : "Retour à l'accueil"}
         </Button>
       </div>

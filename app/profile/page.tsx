@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { User, Bell, Globe, LogOut, ChevronRight, Star, CalendarCheck, Camera, Pencil } from 'lucide-react';
+import { User, Bell, Globe, LogOut, ChevronRight, Star, CalendarCheck, Camera, Pencil, Crown } from 'lucide-react';
 import { Avatar } from '@/components/ui/Avatar';
 import { LangSwitch } from '@/components/ui/LangSwitch';
 import { Button } from '@/components/ui/Button';
@@ -60,6 +60,7 @@ export default function ProfilePage() {
   const menuItems = [
     { icon: CalendarCheck, labelFr: 'Mes réservations', labelDr: 'حجوزاتي', href: '/bookings' },
     { icon: Star, labelFr: 'Mes avis', labelDr: 'تقييماتي', href: '#' },
+    { icon: Crown, labelFr: 'Abonnement pro', labelDr: 'اشتراك احترافي', href: '/subscription', isSubscription: true },
     { icon: Bell, labelFr: 'Notifications', labelDr: 'الإشعارات', href: '#' },
     { icon: Globe, labelFr: 'Langue', labelDr: 'اللغة', href: '#', isLang: true },
     { icon: User, labelFr: 'Devenir pro', labelDr: 'انضم كحرفي', href: '/auth/register-pro' },
@@ -230,12 +231,17 @@ export default function ProfilePage() {
               ) : (
                 <Link href={item.href} className="flex items-center justify-between px-5 py-4 hover:bg-[#F7F5F2] transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-[#F7F5F2] rounded-[10px] flex items-center justify-center">
-                      <item.icon size={18} className="text-[#9C9189]" />
+                    <div className={`w-9 h-9 rounded-[10px] flex items-center justify-center ${item.isSubscription ? 'bg-[#F5A623]/10' : 'bg-[#F7F5F2]'}`}>
+                      <item.icon size={18} className={item.isSubscription ? 'text-[#F5A623]' : 'text-[#9C9189]'} />
                     </div>
                     <span className={`text-sm font-medium text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
                       {lang === 'dr' ? item.labelDr : item.labelFr}
                     </span>
+                    {item.isSubscription && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#F5A623]/15 text-[#D4881A]">
+                        {lang === 'dr' ? 'جديد' : 'Nouveau'}
+                      </span>
+                    )}
                   </div>
                   <ChevronRight size={16} className="text-[#9C9189]" />
                 </Link>
