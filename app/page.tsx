@@ -85,10 +85,10 @@ export default function HomePage() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-[#10B981] hover:bg-[#059669] text-white h-full px-5 py-3.5 font-semibold text-sm transition-colors flex items-center gap-2 flex-shrink-0"
+                  className="bg-[#10B981] hover:bg-[#059669] text-white h-full px-5 py-3.5 font-semibold text-sm transition-colors flex items-center gap-1.5 flex-shrink-0"
                 >
-                  <Search size={18} className="sm:hidden" />
-                  <span className={`hidden sm:inline ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('search')}</span>
+                  <span className={lang === 'dr' ? 'font-arabic' : ''}>{t('search')}</span>
+                  <ArrowRight size={16} />
                 </button>
               </div>
             </motion.form>
