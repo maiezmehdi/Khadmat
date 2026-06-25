@@ -49,7 +49,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
         <p className={`text-[#9C9189] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr'
             ? 'تقييمك يساعد الحرفيين وبقية المستخدمين على الاختيار.'
-            : "Votre avis aide les artisans et la communauté à s'améliorer."}
+            : 'Votre avis aide les artisans et la communauté à s\'améliorer.'}
         </p>
         <Button onClick={() => router.push('/bookings')} fullWidth size="lg">
           <span className={lang === 'dr' ? 'font-arabic' : ''}>
