@@ -71,21 +71,26 @@ export default function HomePage() {
             </motion.p>
 
             {/* Search Bar */}
-            <motion.form variants={fadeUp} onSubmit={handleSearch} className="flex gap-3 max-w-xl">
-              <div className="flex-1 relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50" size={20} />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder={t('search_placeholder')}
-                  className={`w-full bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-white/50 rounded-[12px] pl-12 pr-4 py-4 text-base focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
-                />
+            <motion.form variants={fadeUp} onSubmit={handleSearch} className="max-w-xl">
+              <div className="flex items-center bg-white rounded-[16px] shadow-2xl overflow-hidden">
+                <div className={`flex items-center gap-3 flex-1 px-4 py-3.5 ${lang === 'dr' ? 'flex-row-reverse' : ''}`}>
+                  <Search size={20} className="text-[#9CA3AF] flex-shrink-0" />
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={t('search_placeholder')}
+                    className={`flex-1 bg-transparent text-[#111827] placeholder:text-[#9CA3AF] text-base outline-none min-w-0 ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-[#10B981] hover:bg-[#059669] text-white h-full px-5 py-3.5 font-semibold text-sm transition-colors flex items-center gap-2 flex-shrink-0"
+                >
+                  <Search size={18} className="sm:hidden" />
+                  <span className={`hidden sm:inline ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('search')}</span>
+                </button>
               </div>
-              <Button type="submit" size="lg" className="flex-shrink-0 px-4 sm:px-8">
-                <Search size={20} className="sm:hidden" />
-                <span className="hidden sm:inline">{t('search')}</span>
-              </Button>
             </motion.form>
 
             {/* Stats */}
