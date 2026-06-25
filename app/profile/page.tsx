@@ -238,7 +238,7 @@ export default function ProfilePage() {
                       {lang === 'dr' ? item.labelDr : item.labelFr}
                     </span>
                     {item.isSubscription && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#059669]">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#3B82F6]/15 text-[#2563EB] border border-[#3B82F6]/20">
                         {lang === 'dr' ? 'جديد' : 'Nouveau'}
                       </span>
                     )}

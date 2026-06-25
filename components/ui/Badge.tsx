@@ -10,11 +10,11 @@ interface BadgeProps {
 }
 
 const variants: Record<BadgeVariant, string> = {
-  active: 'bg-[#10B981]/15 text-[#059669]',
-  default: 'bg-[#F8FAF9] text-[#6B7280]',
-  dark: 'bg-[#111827] text-white',
-  urgent: 'bg-[#E8472A]/15 text-[#E8472A]',
-  success: 'bg-[#16A34A]/15 text-[#16A34A]',
+  active:  'bg-[#F59E0B]/20 text-[#B45309] border border-[#F59E0B]/30',   // amber — premium
+  default: 'bg-[#EFF6FF] text-[#3B82F6]',                                  // blue-gray — neutral
+  dark:    'bg-[#111827] text-white',                                        // dark
+  urgent:  'bg-[#E8472A]/15 text-[#E8472A]',                               // red — urgent
+  success: 'bg-[#10B981]/15 text-[#059669] border border-[#10B981]/25',    // green — verified
 };
 
 export function Badge({ variant = 'default', children, className }: BadgeProps) {

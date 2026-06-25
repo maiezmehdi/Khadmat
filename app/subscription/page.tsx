@@ -221,8 +221,8 @@ export default function SubscriptionPage() {
                       <span className={cn(
                         'text-[10px] font-bold px-2 py-0.5 rounded-full',
                         isPremium
-                          ? 'bg-[#10B981] text-white'
-                          : 'bg-[#3B82F6]/15 text-[#3B82F6]'
+                          ? 'bg-[#7C3AED]/20 text-[#7C3AED] border border-[#7C3AED]/30'
+                          : 'bg-[#F97316]/20 text-[#C2410C] border border-[#F97316]/30'
                       )}>
                         {lang === 'dr' ? plan.badge_dr : plan.badge_fr}
                       </span>
