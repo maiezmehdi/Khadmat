@@ -97,12 +97,12 @@ export default function HomePage() {
             {/* Stats */}
             <motion.div variants={stagger} className="flex items-center gap-6 mt-8 flex-wrap">
               {[
-                { label: lang === 'dr' ? 'حرفي موثوق' : 'Pros vérifiés', value: '500+' },
-                { label: lang === 'dr' ? 'حجز ناجح' : 'Réservations', value: '12k+' },
-                { label: lang === 'dr' ? 'تقييم متوسط' : 'Note moyenne', value: '4.8★' },
+                { label: lang === 'dr' ? 'حرفي موثوق' : 'Pros vérifiés', value: '500+', gold: false },
+                { label: lang === 'dr' ? 'حجز ناجح' : 'Réservations', value: '12k+', gold: false },
+                { label: lang === 'dr' ? 'تقييم متوسط' : 'Note moyenne', value: '4.8★', gold: true },
               ].map(stat => (
                 <motion.div key={stat.label} variants={fadeUp} className="text-center">
-                  <p className="text-2xl font-display font-bold text-white">{stat.value}</p>
+                  <p className={`text-2xl font-display font-bold ${stat.gold ? 'text-[#F59E0B]' : 'text-white'}`}>{stat.value}</p>
                   <p className={`text-xs text-white/60 ${lang === 'dr' ? 'font-arabic' : ''}`}>{stat.label}</p>
                 </motion.div>
               ))}
