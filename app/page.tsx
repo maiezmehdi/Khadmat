@@ -85,10 +85,11 @@ export default function HomePage() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-[#10B981] hover:bg-[#059669] text-white h-full px-5 py-3.5 font-semibold text-sm transition-colors flex items-center gap-1.5 flex-shrink-0"
+                  className="bg-[#10B981] hover:bg-[#059669] text-white h-full px-4 sm:px-5 py-3.5 font-semibold text-sm transition-colors flex items-center gap-1.5 flex-shrink-0"
                 >
-                  <span className={lang === 'dr' ? 'font-arabic' : ''}>{t('search')}</span>
-                  <ArrowRight size={16} />
+                  <ArrowRight size={18} className="sm:hidden" />
+                  <span className={`hidden sm:inline ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('search')}</span>
+                  <ArrowRight size={16} className="hidden sm:inline" />
                 </button>
               </div>
             </motion.form>
@@ -249,6 +250,44 @@ export default function HomePage() {
             </Link>
           </div>
         </motion.section>
+
+        {/* Ooredoo Ad Banner */}
+        <motion.section className="mb-10" variants={fadeUp} {...inView}>
+          <div className="relative bg-gradient-to-r from-[#CC0000] to-[#FF2B2B] rounded-[24px] px-6 py-5 flex items-center gap-4 overflow-hidden">
+            {/* Background decorative circles */}
+            <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-white/5" />
+            <div className="absolute -right-2 -bottom-6 w-24 h-24 rounded-full bg-white/5" />
+
+            {/* Ooredoo logo area */}
+            <div className="flex-shrink-0 w-12 h-12 bg-white rounded-[12px] flex items-center justify-center shadow-md">
+              <span className="text-[#CC0000] font-black text-lg leading-none tracking-tight">Or</span>
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold text-white/50 uppercase tracking-widest mb-0.5">
+                {lang === 'dr' ? 'إعلان ممول' : 'Annonce sponsorisée'}
+              </p>
+              <p className="text-sm font-bold text-white leading-snug">
+                {lang === 'dr' ? 'أوريدو 5G — أسرع، أبعد، معك دايما' : 'Ooredoo 5G — Plus rapide, toujours connecté'}
+              </p>
+              <p className="text-xs text-white/70 mt-0.5">
+                {lang === 'dr' ? 'اشترك الآن واستمتع بسرعة الجيل الخامس' : 'Abonnez-vous et profitez de la vitesse 5G'}
+              </p>
+            </div>
+
+            {/* CTA */}
+            <a
+              href="https://www.ooredoo.tn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 bg-white text-[#CC0000] font-bold text-xs px-4 py-2 rounded-[10px] hover:bg-white/90 transition-colors whitespace-nowrap"
+            >
+              {lang === 'dr' ? 'اكتشف' : 'Découvrir'}
+            </a>
+          </div>
+        </motion.section>
+
       </div>
     </div>
   );
