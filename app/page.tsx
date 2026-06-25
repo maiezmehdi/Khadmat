@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Search, Star, Shield, Clock, ChevronRight, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { CategoryGrid } from '@/components/blocks/CategoryGrid';
 import { ProCard } from '@/components/blocks/ProCard';
 import { Button } from '@/components/ui/Button';
@@ -12,12 +12,12 @@ import { CATEGORIES, PROS, INDICATIVE_PRICES } from '@/lib/mock-data';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
 };
 
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
 };
