@@ -96,36 +96,46 @@ export default function HomePage() {
 
         {/* Categories */}
         <section className="py-10">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className={`text-xl font-display font-bold text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
-              {lang === 'dr' ? 'اختار الخدمة' : 'Nos services'}
-            </h2>
-            <Link href="/search" className="flex items-center gap-1 text-sm text-[#10B981] font-semibold hover:gap-2 transition-all">
+          <div className="flex items-start justify-between mb-1">
+            <div>
+              <h2 className={`text-xl font-display font-bold text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                {lang === 'dr' ? 'اختار الخدمة' : 'Nos services'}
+              </h2>
+              <p className={`text-sm text-[#6B7280] mt-0.5 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                {lang === 'dr' ? 'كل الحرفيين اللي تحتاجهم' : 'Tous les artisans dont vous avez besoin'}
+              </p>
+            </div>
+            <Link href="/search" className="flex items-center gap-1 text-sm text-[#10B981] font-semibold hover:gap-2 transition-all mt-1">
               {t('view_all')} <ArrowRight size={14} />
             </Link>
           </div>
-          <CategoryGrid categories={CATEGORIES} />
+          <div className="mt-5">
+            <CategoryGrid categories={CATEGORIES} />
+          </div>
         </section>
 
         {/* How it works */}
-        <section className="py-10 bg-white rounded-[24px] px-6 sm:px-10 mb-10">
-          <h2 className={`text-xl font-display font-bold text-[#111827] mb-6 text-center ${lang === 'dr' ? 'font-arabic' : ''}`}>
-            {t('how_it_works')}
-          </h2>
-          <div className="grid grid-cols-3 gap-3 sm:gap-6">
+        <section className="py-10 mb-10 bg-gradient-to-br from-[#F0FDF4] to-[#ECFDF5] rounded-[24px] px-6 sm:px-10">
+          <div className="text-center mb-8">
+            <h2 className={`text-xl font-display font-bold text-[#111827] mb-1.5 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+              {t('how_it_works')}
+            </h2>
+            <p className={`text-sm text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+              {lang === 'dr' ? '٣ خطوات بسيطة تلقى الحرفي متاعك' : '3 étapes simples pour trouver votre artisan'}
+            </p>
+          </div>
+          <div className="grid grid-cols-3 gap-3 sm:gap-5">
             {[
-              { icon: Search, title: t('step1_title'), desc: t('step1_desc'), num: '01' },
-              { icon: Clock, title: t('step2_title'), desc: t('step2_desc'), num: '02' },
-              { icon: Star, title: t('step3_title'), desc: t('step3_desc'), num: '03' },
+              { icon: Search, title: t('step1_title'), desc: t('step1_desc'), color: '#10B981', bg: '#10B981' },
+              { icon: Clock,  title: t('step2_title'), desc: t('step2_desc'), color: '#3B82F6', bg: '#3B82F6' },
+              { icon: Star,   title: t('step3_title'), desc: t('step3_desc'), color: '#F59E0B', bg: '#F59E0B' },
             ].map(step => (
-              <div key={step.num} className="flex flex-col items-center text-center gap-2">
-                <div className="relative mb-1">
-                  <div className="w-14 h-14 bg-[#10B981]/10 rounded-full flex items-center justify-center">
-                    <step.icon size={22} className="text-[#10B981]" />
-                  </div>
-                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 text-[10px] font-bold text-[#111827] bg-[#10B981] rounded-full flex items-center justify-center leading-none">
-                    {step.num.replace('0', '')}
-                  </span>
+              <div key={step.color} className="bg-white rounded-[20px] p-4 sm:p-6 flex flex-col items-center text-center gap-3 shadow-sm border border-white">
+                <div
+                  className="w-14 h-14 rounded-[16px] flex items-center justify-center"
+                  style={{ backgroundColor: `${step.bg}15` }}
+                >
+                  <step.icon size={24} style={{ color: step.color }} />
                 </div>
                 <h3 className={`font-semibold text-[#111827] text-xs sm:text-sm leading-tight ${lang === 'dr' ? 'font-arabic' : ''}`}>{step.title}</h3>
                 <p className={`hidden sm:block text-xs text-[#6B7280] leading-relaxed ${lang === 'dr' ? 'font-arabic' : ''}`}>{step.desc}</p>
