@@ -39,12 +39,17 @@ function CategoryItem({ cat, lang, active }: { cat: Category; lang: string; acti
   return (
     <Link href={`/search?category=${cat.slug}`} className="flex-shrink-0">
       <div className={cn(
-        'flex flex-col items-center gap-2 p-3 rounded-[16px] transition-all duration-200 cursor-pointer group',
+        'flex flex-col items-center gap-2 p-3 rounded-[16px] transition-all duration-200 cursor-pointer',
         active
-          ? 'bg-[#1A1614] text-white'
-          : 'bg-white hover:bg-[#F7F5F2] border border-[#E0DDD8] hover:border-[#F5A623]'
+          ? 'bg-[#1A1614]'
+          : 'bg-white hover:shadow-md hover:-translate-y-0.5 border border-[#E0DDD8] hover:border-[#F5A623]/50'
       )}>
-        <span className="text-2xl">{cat.icon}</span>
+        <div
+          className="w-11 h-11 rounded-[12px] flex items-center justify-center"
+          style={{ backgroundColor: active ? 'rgba(255,255,255,0.15)' : `${cat.color}22` }}
+        >
+          <span className="text-2xl leading-none">{cat.icon}</span>
+        </div>
         <span className={cn(
           'text-xs font-medium text-center leading-tight line-clamp-2',
           lang === 'dr' ? 'font-arabic' : '',

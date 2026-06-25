@@ -109,24 +109,26 @@ export default function HomePage() {
 
         {/* How it works */}
         <section className="py-10 bg-white rounded-[24px] px-6 sm:px-10 mb-10">
-          <h2 className={`text-xl font-display font-bold text-[#1A1614] mb-8 text-center ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <h2 className={`text-xl font-display font-bold text-[#1A1614] mb-6 text-center ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {t('how_it_works')}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6">
             {[
               { icon: Search, title: t('step1_title'), desc: t('step1_desc'), num: '01' },
               { icon: Clock, title: t('step2_title'), desc: t('step2_desc'), num: '02' },
               { icon: Star, title: t('step3_title'), desc: t('step3_desc'), num: '03' },
             ].map(step => (
-              <div key={step.num} className="flex flex-col items-center text-center gap-3">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-[#F5A623]/10 rounded-[16px] flex items-center justify-center">
-                    <step.icon size={28} className="text-[#F5A623]" />
+              <div key={step.num} className="flex flex-col items-center text-center gap-2">
+                <div className="relative mb-1">
+                  <div className="w-14 h-14 bg-[#F5A623]/10 rounded-full flex items-center justify-center">
+                    <step.icon size={22} className="text-[#F5A623]" />
                   </div>
-                  <span className="absolute -top-2 -right-2 text-xs font-bold text-[#9C9189]">{step.num}</span>
+                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 text-[10px] font-bold text-[#1A1614] bg-[#F5A623] rounded-full flex items-center justify-center leading-none">
+                    {step.num.replace('0', '')}
+                  </span>
                 </div>
-                <h3 className={`font-semibold text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>{step.title}</h3>
-                <p className={`text-sm text-[#9C9189] leading-relaxed ${lang === 'dr' ? 'font-arabic' : ''}`}>{step.desc}</p>
+                <h3 className={`font-semibold text-[#1A1614] text-xs sm:text-sm leading-tight ${lang === 'dr' ? 'font-arabic' : ''}`}>{step.title}</h3>
+                <p className={`hidden sm:block text-xs text-[#9C9189] leading-relaxed ${lang === 'dr' ? 'font-arabic' : ''}`}>{step.desc}</p>
               </div>
             ))}
           </div>
@@ -142,30 +144,40 @@ export default function HomePage() {
               {t('view_all')} <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {featuredPros.map(pro => (
-              <ProCard key={pro.id} pro={pro} />
-            ))}
+          <div className="-mx-4 sm:mx-0 overflow-x-auto scrollbar-hide sm:overflow-visible">
+            <div className="flex gap-3 px-4 pb-2 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
+              {featuredPros.map(pro => (
+                <div key={pro.id} className="flex-shrink-0 w-44 sm:w-auto">
+                  <ProCard pro={pro} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Indicative Prices */}
         <section className="py-10">
-          <h2 className={`text-xl font-display font-bold text-[#1A1614] mb-6 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <h2 className={`text-xl font-display font-bold text-[#1A1614] mb-4 ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {t('indicative_prices')}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {INDICATIVE_PRICES.map(price => {
               const cat = CATEGORIES.find(c => c.slug === price.category);
               if (!cat) return null;
               return (
                 <Link key={price.category} href={`/search?category=${price.category}`}>
-                  <div className="bg-white rounded-[16px] p-4 border border-[#E0DDD8] hover:border-[#F5A623] hover:shadow-sm transition-all text-center">
-                    <span className="text-2xl">{cat.icon}</span>
-                    <p className={`text-xs font-medium text-[#1A1614] mt-2 mb-1 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                  <div className="bg-white rounded-[16px] px-4 py-3 border border-[#E0DDD8] hover:border-[#F5A623] hover:shadow-sm transition-all flex items-center gap-3">
+                    <div
+                      className="w-10 h-10 rounded-[10px] flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${cat.color}22` }}
+                    >
+                      <span className="text-xl leading-none">{cat.icon}</span>
+                    </div>
+                    <span className={`text-sm font-medium text-[#1A1614] flex-1 ${lang === 'dr' ? 'font-arabic' : ''}`}>
                       {lang === 'dr' ? cat.name_dr : cat.name_fr}
-                    </p>
-                    <p className="text-xs text-[#9C9189]">{price.min}–{price.max} DT</p>
+                    </span>
+                    <span className="text-sm font-bold text-[#F5A623] flex-shrink-0">{price.min}–{price.max} DT</span>
+                    <ChevronRight size={14} className="text-[#9C9189] flex-shrink-0" />
                   </div>
                 </Link>
               );
