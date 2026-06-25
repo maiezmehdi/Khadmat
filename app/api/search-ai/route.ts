@@ -22,6 +22,11 @@ Réponds UNIQUEMENT avec du JSON valide, sans texte autour :
 Si la requête ne correspond à aucune catégorie, mets category: null.`;
 
 export async function POST(req: Request) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('[search-ai] ANTHROPIC_API_KEY is not set');
+    return NextResponse.json({ category: null, confidence: 'low', error: 'no_key' });
+  }
+
   try {
     const { query } = await req.json();
 
@@ -40,7 +45,8 @@ export async function POST(req: Request) {
     const result = JSON.parse(text);
 
     return NextResponse.json(result);
-  } catch {
+  } catch (err) {
+    console.error('[search-ai] error:', err);
     return NextResponse.json({ category: null, confidence: 'low' });
   }
 }
