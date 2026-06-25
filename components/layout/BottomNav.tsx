@@ -28,13 +28,15 @@ export function BottomNav() {
             <Link
               key={key}
               href={href}
-              className={cn(
-                'flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-[8px] min-w-[56px] transition-colors',
-                active ? 'text-[#10B981]' : 'text-[#6B7280]'
-              )}
+              className="flex flex-col items-center gap-0.5 min-w-[56px] transition-colors"
             >
-              <Icon size={22} strokeWidth={active ? 2.5 : 1.5} />
-              <span className="text-[10px] font-medium">
+              <span className={cn(
+                'flex items-center justify-center w-10 h-7 rounded-full transition-all',
+                active ? 'bg-[#10B981]' : ''
+              )}>
+                <Icon size={20} strokeWidth={active ? 2.5 : 1.5} className={active ? 'text-white' : 'text-[#6B7280]'} />
+              </span>
+              <span className={cn('text-[10px] font-medium', active ? 'text-[#10B981]' : 'text-[#6B7280]')}>
                 {t(key as 'home' | 'search' | 'bookings' | 'profile')}
               </span>
             </Link>

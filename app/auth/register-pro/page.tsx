@@ -101,7 +101,7 @@ export default function RegisterProPage() {
             <div className={cn(
               'w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0',
               i < stepIndex ? 'bg-[#16A34A] text-white' :
-              i === stepIndex ? 'bg-[#10B981] text-[#111827]' :
+              i === stepIndex ? 'bg-[#10B981] text-white' :
               'bg-[#E5E7EB] text-[#6B7280]'
             )}>
               {i < stepIndex ? '✓' : i + 1}

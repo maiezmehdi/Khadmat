@@ -221,7 +221,7 @@ export default function SubscriptionPage() {
                       <span className={cn(
                         'text-[10px] font-bold px-2 py-0.5 rounded-full',
                         isPremium
-                          ? 'bg-[#10B981] text-[#111827]'
+                          ? 'bg-[#10B981] text-white'
                           : 'bg-[#3B82F6]/15 text-[#3B82F6]'
                       )}>
                         {lang === 'dr' ? plan.badge_dr : plan.badge_fr}
@@ -312,7 +312,7 @@ export default function SubscriptionPage() {
                   className={cn(
                     'w-full rounded-[12px] py-3 text-sm font-bold transition-all active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-60',
                     isPremium
-                      ? 'bg-[#10B981] text-[#111827] hover:bg-[#059669]'
+                      ? 'bg-[#10B981] text-white hover:bg-[#059669]'
                       : 'bg-[#111827] text-white hover:bg-[#1F2937]'
                   )}
                 >

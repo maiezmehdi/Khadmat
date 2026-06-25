@@ -69,7 +69,7 @@ export function Header() {
             ) : (
               <Link
                 href="/auth/login"
-                className="hidden sm:inline-flex bg-[#10B981] text-[#111827] font-semibold text-sm px-4 py-2 rounded-[8px] hover:bg-[#059669] transition-colors"
+                className="hidden sm:inline-flex bg-[#10B981] text-white font-semibold text-sm px-4 py-2 rounded-[8px] hover:bg-[#059669] transition-colors"
               >
                 {t('sign_in')}
               </Link>
@@ -110,7 +110,7 @@ export function Header() {
               <Link
                 href="/auth/login"
                 onClick={() => setMobileOpen(false)}
-                className="bg-[#10B981] text-[#111827] font-semibold text-sm px-4 py-2 rounded-[8px] hover:bg-[#059669] transition-colors"
+                className="bg-[#10B981] text-white font-semibold text-sm px-4 py-2 rounded-[8px] hover:bg-[#059669] transition-colors"
               >
                 {t('sign_in')}
               </Link>
