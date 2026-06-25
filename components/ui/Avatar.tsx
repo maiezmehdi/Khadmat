@@ -28,7 +28,7 @@ export function Avatar({ src, name, size = 'md', online, className }: AvatarProp
   const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 
   return (
-    <div className={cn('relative flex-shrink-0', className)}>
+    <div className={cn('relative flex-shrink-0 rounded-full', className)}>
       {src ? (
         <img
           src={src}

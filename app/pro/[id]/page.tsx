@@ -35,26 +35,26 @@ export default function ProPage({ params }: { params: Promise<{ id: string }> })
       </button>
 
       {/* Profile Card */}
-      <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-[#E0DDD8] mb-6">
+      <div className="bg-white rounded-[24px] shadow-sm border border-[#E0DDD8] mb-6 relative">
         {/* Cover */}
-        <div className="h-32 sm:h-48 bg-gradient-to-br from-[#1A1614] to-[#2a2320] relative">
+        <div className="h-32 sm:h-48 bg-gradient-to-br from-[#1A1614] to-[#2a2320] relative rounded-t-[24px] overflow-hidden">
           <div className="absolute inset-0 opacity-20"
             style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #F5A623, transparent)' }}
           />
         </div>
 
-        <div className="px-5 pb-6">
-          {/* Avatar — overlaps cover */}
-          <div className="-mt-12 mb-3">
-            <Avatar
-              src={pro.user?.avatar_url}
-              name={pro.user?.full_name ?? ''}
-              size="xl"
-              online
-              className="border-4 border-white rounded-full"
-            />
-          </div>
+        {/* Avatar — absolutely at cover/content boundary, no white card behind it */}
+        <div className="absolute top-20 sm:top-36 left-5">
+          <Avatar
+            src={pro.user?.avatar_url}
+            name={pro.user?.full_name ?? ''}
+            size="xl"
+            online
+            className="border-4 border-white"
+          />
+        </div>
 
+        <div className="px-5 pb-6 pt-14">
           {/* Name + badges + location — fully below cover */}
           <div className="mb-4">
             <div className="flex items-center gap-2 flex-wrap">
