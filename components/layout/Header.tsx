@@ -31,7 +31,7 @@ export function Header() {
             <span className="text-2xl font-display font-bold text-[#111827]">
               Khad<span className="text-[#10B981]">amat</span>
             </span>
-            <span className="text-xs font-arabic text-[#6B7280] hidden sm:inline">خدامات</span>
+            <span className="text-xs font-arabic text-[#6B7280]">خدامات</span>
           </Link>
 
           {/* Desktop Nav */}

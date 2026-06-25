@@ -72,7 +72,7 @@ export default function HomePage() {
 
             {/* Search Bar */}
             <motion.form variants={fadeUp} onSubmit={handleSearch} className="max-w-xl">
-              <div className="flex items-center bg-white rounded-[16px] shadow-2xl overflow-hidden">
+              <div className="flex items-center bg-white rounded-[16px] shadow-2xl gap-2 pr-2">
                 <div className={`flex items-center gap-3 flex-1 px-4 py-3.5 ${lang === 'dr' ? 'flex-row-reverse' : ''}`}>
                   <Search size={20} className="text-[#9CA3AF] flex-shrink-0" />
                   <input
@@ -85,11 +85,10 @@ export default function HomePage() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-[#10B981] hover:bg-[#059669] text-white h-full px-4 sm:px-5 py-3.5 font-semibold text-sm transition-colors flex items-center gap-1.5 flex-shrink-0"
+                  className="bg-[#10B981] hover:bg-[#059669] active:scale-95 text-white rounded-[10px] px-4 py-2.5 font-semibold text-sm transition-all flex-shrink-0 flex items-center gap-1.5"
                 >
-                  <ArrowRight size={18} className="sm:hidden" />
                   <span className={`hidden sm:inline ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('search')}</span>
-                  <ArrowRight size={16} className="hidden sm:inline" />
+                  <ArrowRight size={17} />
                 </button>
               </div>
             </motion.form>
