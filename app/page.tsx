@@ -69,8 +69,9 @@ export default function HomePage() {
                   className={`w-full bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-[#9C9189] rounded-[12px] pl-12 pr-4 py-4 text-base focus:outline-none focus:ring-2 focus:ring-[#F5A623] focus:border-transparent transition-all ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
                 />
               </div>
-              <Button type="submit" size="lg" className="flex-shrink-0">
-                {t('search')}
+              <Button type="submit" size="lg" className="flex-shrink-0 px-4 sm:px-8">
+                <Search size={20} className="sm:hidden" />
+                <span className="hidden sm:inline">{t('search')}</span>
               </Button>
             </form>
 
