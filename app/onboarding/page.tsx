@@ -14,9 +14,9 @@ const SLIDES = [
     title_dr: 'لقى الحرفي المناسب',
     desc_fr: 'Des centaines de professionnels vérifiés près de chez vous, disponibles 7j/7.',
     desc_dr: 'مئات الحرفيين الموثوقين قريبين منك، متاحين كل أيام.',
-    bg: '#1A1614',
-    glow: '#F5A623',
-    accent: '#F5A623',
+    bg: '#111827',
+    glow: '#10B981',
+    accent: '#10B981',
   },
   {
     emoji: '📅',
@@ -25,8 +25,8 @@ const SLIDES = [
     desc_fr: 'Choisissez votre créneau, confirmez et c\'est parti. Simple et rapide.',
     desc_dr: 'اختار الوقت المناسب وأكد — وهاك ! بسيط وسريع.',
     bg: '#0D1F16',
-    glow: '#27AE60',
-    accent: '#27AE60',
+    glow: '#16A34A',
+    accent: '#16A34A',
   },
   {
     emoji: '🛡️',
@@ -35,8 +35,8 @@ const SLIDES = [
     desc_fr: 'Identités vérifiées, paiement sécurisé et avis clients authentiques.',
     desc_dr: 'هويات موثوقة، دفع آمن وتقييمات حقيقية من العملاء.',
     bg: '#111128',
-    glow: '#F5A623',
-    accent: '#F5A623',
+    glow: '#10B981',
+    accent: '#10B981',
   },
 ];
 
@@ -171,7 +171,7 @@ export default function OnboardingPage() {
         <button
           onClick={goNext}
           className="w-full rounded-[16px] py-4 font-semibold text-base flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98]"
-          style={{ background: slide.accent, color: '#1A1614' }}
+          style={{ background: slide.accent, color: '#111827' }}
         >
           <span className={lang === 'dr' ? 'font-arabic' : ''}>
             {isLast

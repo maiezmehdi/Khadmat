@@ -55,13 +55,13 @@ export default function RegisterProPage() {
   if (submitted) {
     return (
       <div className="max-w-md mx-auto px-4 py-20 text-center">
-        <div className="w-20 h-20 bg-[#27AE60]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle size={40} className="text-[#27AE60]" />
+        <div className="w-20 h-20 bg-[#16A34A]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle size={40} className="text-[#16A34A]" />
         </div>
-        <h2 className={`text-2xl font-display font-bold text-[#1A1614] mb-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <h2 className={`text-2xl font-display font-bold text-[#111827] mb-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'تم تقديم طلبك!' : 'Candidature envoyée !'}
         </h2>
-        <p className={`text-[#9C9189] mb-6 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <p className={`text-[#6B7280] mb-6 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr'
             ? 'سيتصل بيك فريق خدامات خلال 24-48 ساعة للتحقق من ملفك.'
             : 'Notre équipe vous contactera sous 24–48h pour valider votre dossier.'}
@@ -82,15 +82,15 @@ export default function RegisterProPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 pb-24">
-      <button onClick={() => router.back()} className="flex items-center gap-2 text-[#9C9189] hover:text-[#1A1614] mb-6">
+      <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6B7280] hover:text-[#111827] mb-6">
         <ArrowLeft size={18} />
         <span className="text-sm">{t('back')}</span>
       </button>
 
-      <h1 className={`text-2xl font-display font-bold text-[#1A1614] mb-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <h1 className={`text-2xl font-display font-bold text-[#111827] mb-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
         {t('join_as_pro')}
       </h1>
-      <p className={`text-[#9C9189] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <p className={`text-[#6B7280] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
         {lang === 'dr' ? 'انضم لآلاف الحرفيين على خدامات' : 'Rejoignez des milliers de pros sur Khadamat'}
       </p>
 
@@ -100,14 +100,14 @@ export default function RegisterProPage() {
           <div key={s} className="flex items-center gap-2 flex-1">
             <div className={cn(
               'w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0',
-              i < stepIndex ? 'bg-[#27AE60] text-white' :
-              i === stepIndex ? 'bg-[#F5A623] text-[#1A1614]' :
-              'bg-[#E0DDD8] text-[#9C9189]'
+              i < stepIndex ? 'bg-[#16A34A] text-white' :
+              i === stepIndex ? 'bg-[#10B981] text-[#111827]' :
+              'bg-[#E5E7EB] text-[#6B7280]'
             )}>
               {i < stepIndex ? '✓' : i + 1}
             </div>
             {i < STEPS.length - 1 && (
-              <div className={cn('flex-1 h-1 rounded-full', i < stepIndex ? 'bg-[#27AE60]' : 'bg-[#E0DDD8]')} />
+              <div className={cn('flex-1 h-1 rounded-full', i < stepIndex ? 'bg-[#16A34A]' : 'bg-[#E5E7EB]')} />
             )}
           </div>
         ))}
@@ -116,25 +116,25 @@ export default function RegisterProPage() {
       {/* Step 1: Info */}
       {step === 'infos' && (
         <div className="flex flex-col gap-4">
-          <h2 className={`font-semibold text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <h2 className={`font-semibold text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {lang === 'dr' ? '1. معلوماتك الشخصية' : '1. Vos informations'}
           </h2>
 
           {/* Cover photo */}
           <div>
-            <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+            <label className={`text-sm font-semibold text-[#111827] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {lang === 'dr' ? 'صورة الغلاف (اختياري)' : 'Photo de couverture (optionnel)'}
             </label>
             <div
               onClick={() => coverRef.current?.click()}
-              className="relative h-32 rounded-[16px] overflow-hidden border-2 border-dashed border-[#E0DDD8] hover:border-[#F5A623] transition-colors cursor-pointer group"
+              className="relative h-32 rounded-[16px] overflow-hidden border-2 border-dashed border-[#E5E7EB] hover:border-[#10B981] transition-colors cursor-pointer group"
             >
               {coverPreview ? (
                 <img src={coverPreview} alt="Cover" className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full bg-[#F7F5F2] flex flex-col items-center justify-center gap-2">
-                  <Camera size={24} className="text-[#9C9189] group-hover:text-[#F5A623] transition-colors" />
-                  <span className={`text-xs text-[#9C9189] group-hover:text-[#F5A623] transition-colors ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                <div className="w-full h-full bg-[#F8FAF9] flex flex-col items-center justify-center gap-2">
+                  <Camera size={24} className="text-[#6B7280] group-hover:text-[#10B981] transition-colors" />
+                  <span className={`text-xs text-[#6B7280] group-hover:text-[#10B981] transition-colors ${lang === 'dr' ? 'font-arabic' : ''}`}>
                     {lang === 'dr' ? 'أضف صورة غلاف' : 'Ajouter une photo de couverture'}
                   </span>
                 </div>
@@ -150,26 +150,26 @@ export default function RegisterProPage() {
 
           {/* Avatar */}
           <div>
-            <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+            <label className={`text-sm font-semibold text-[#111827] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {lang === 'dr' ? 'صورتك الشخصية' : 'Photo de profil'}
             </label>
             <div className="flex items-center gap-4">
               <div
                 onClick={() => avatarRef.current?.click()}
-                className="relative w-20 h-20 rounded-full border-2 border-dashed border-[#E0DDD8] hover:border-[#F5A623] transition-colors cursor-pointer group flex-shrink-0 overflow-hidden"
+                className="relative w-20 h-20 rounded-full border-2 border-dashed border-[#E5E7EB] hover:border-[#10B981] transition-colors cursor-pointer group flex-shrink-0 overflow-hidden"
               >
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full bg-[#F7F5F2] flex items-center justify-center">
-                    <User size={28} className="text-[#9C9189] group-hover:text-[#F5A623] transition-colors" />
+                  <div className="w-full h-full bg-[#F8FAF9] flex items-center justify-center">
+                    <User size={28} className="text-[#6B7280] group-hover:text-[#10B981] transition-colors" />
                   </div>
                 )}
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
                   <Camera size={16} className="text-white" />
                 </div>
               </div>
-              <p className={`text-sm text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+              <p className={`text-sm text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>
                 {lang === 'dr'
                   ? 'صورة واضحة للوجه تزيد من فرص الحجز بـ 70%'
                   : 'Une bonne photo de profil augmente vos réservations de 70%'}
@@ -184,21 +184,21 @@ export default function RegisterProPage() {
           </div>
           <Input label={t('phone_number')} type="tel" placeholder="98 123 456" />
           <div>
-            <label className={`text-sm font-semibold text-[#1A1614] mb-1.5 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+            <label className={`text-sm font-semibold text-[#111827] mb-1.5 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {t('your_city')}
             </label>
-            <select className="w-full bg-white border border-[#E0DDD8] rounded-[12px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]">
+            <select className="w-full bg-white border border-[#E5E7EB] rounded-[12px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]">
               {['Tunis', 'Sfax', 'Sousse', 'Monastir', 'Bizerte'].map(c => <option key={c}>{c}</option>)}
             </select>
           </div>
           <div>
-            <label className={`text-sm font-semibold text-[#1A1614] mb-1.5 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+            <label className={`text-sm font-semibold text-[#111827] mb-1.5 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {lang === 'dr' ? 'سيرتك المهنية (اختياري)' : 'Biographie (optionnel)'}
             </label>
             <textarea
               rows={3}
               placeholder={lang === 'dr' ? 'اكتب عن خبرتك...' : 'Décrivez votre expérience...'}
-              className="w-full bg-white border border-[#E0DDD8] rounded-[12px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623] resize-none"
+              className="w-full bg-white border border-[#E5E7EB] rounded-[12px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] resize-none"
             />
           </div>
           <Button size="lg" fullWidth onClick={() => setStep('services')}>
@@ -210,10 +210,10 @@ export default function RegisterProPage() {
       {/* Step 2: Services */}
       {step === 'services' && (
         <div className="flex flex-col gap-4">
-          <h2 className={`font-semibold text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <h2 className={`font-semibold text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {lang === 'dr' ? '2. اختار خدماتك' : '2. Vos services'}
           </h2>
-          <p className={`text-sm text-[#9C9189] -mt-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <p className={`text-sm text-[#6B7280] -mt-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {lang === 'dr' ? 'اختار واحد أو أكثر' : 'Sélectionnez une ou plusieurs catégories'}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -225,8 +225,8 @@ export default function RegisterProPage() {
                 className={cn(
                   'flex flex-col items-center gap-2 p-4 rounded-[16px] border-2 transition-all',
                   selectedCategories.includes(cat.slug)
-                    ? 'border-[#F5A623] bg-[#F5A623]/5'
-                    : 'border-[#E0DDD8] bg-white hover:border-[#9C9189]'
+                    ? 'border-[#10B981] bg-[#10B981]/5'
+                    : 'border-[#E5E7EB] bg-white hover:border-[#6B7280]'
                 )}
               >
                 <span className="text-2xl">{cat.icon}</span>
@@ -234,7 +234,7 @@ export default function RegisterProPage() {
                   {lang === 'dr' ? cat.name_dr : cat.name_fr}
                 </span>
                 {selectedCategories.includes(cat.slug) && (
-                  <CheckCircle size={14} className="text-[#F5A623]" />
+                  <CheckCircle size={14} className="text-[#10B981]" />
                 )}
               </button>
             ))}
@@ -258,10 +258,10 @@ export default function RegisterProPage() {
       {/* Step 3: Documents */}
       {step === 'docs' && (
         <div className="flex flex-col gap-4">
-          <h2 className={`font-semibold text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <h2 className={`font-semibold text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {lang === 'dr' ? '3. الوثائق المطلوبة' : '3. Documents requis'}
           </h2>
-          <p className={`text-sm text-[#9C9189] -mt-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <p className={`text-sm text-[#6B7280] -mt-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {lang === 'dr' ? 'لازم الوثائق باش نتحققوا من هويتك' : 'Ces documents sont nécessaires pour vérifier votre identité'}
           </p>
 
@@ -270,17 +270,17 @@ export default function RegisterProPage() {
             { label: lang === 'dr' ? 'سيلفي مع البطاقة' : 'Selfie avec la CIN', required: true },
             { label: lang === 'dr' ? 'وثيقة المهنة (اختياري)' : 'Justificatif de métier (optionnel)', required: false },
           ].map(doc => (
-            <div key={doc.label} className="flex items-center justify-between bg-[#F7F5F2] rounded-[12px] px-4 py-4 border border-dashed border-[#E0DDD8] hover:border-[#F5A623] transition-colors cursor-pointer group">
+            <div key={doc.label} className="flex items-center justify-between bg-[#F8FAF9] rounded-[12px] px-4 py-4 border border-dashed border-[#E5E7EB] hover:border-[#10B981] transition-colors cursor-pointer group">
               <div>
-                <p className={`text-sm font-medium text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>{doc.label}</p>
+                <p className={`text-sm font-medium text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>{doc.label}</p>
                 {doc.required && <p className="text-xs text-[#E8472A] mt-0.5">{lang === 'dr' ? 'مطلوب' : 'Obligatoire'}</p>}
               </div>
-              <Upload size={18} className="text-[#9C9189] group-hover:text-[#F5A623] transition-colors" />
+              <Upload size={18} className="text-[#6B7280] group-hover:text-[#10B981] transition-colors" />
             </div>
           ))}
 
-          <div className="bg-[#F5A623]/10 rounded-[12px] p-4 border border-[#F5A623]/20">
-            <p className={`text-sm text-[#D4881A] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <div className="bg-[#10B981]/10 rounded-[12px] p-4 border border-[#10B981]/20">
+            <p className={`text-sm text-[#059669] ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {lang === 'dr'
                 ? '⚡ سيتصل بيك فريق خدامات خلال 24-48 ساعة للتحقق من ملفك وتفعيل حسابك.'
                 : '⚡ Notre équipe validera votre profil sous 24–48h. Vous recevrez un SMS de confirmation.'}

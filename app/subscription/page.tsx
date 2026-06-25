@@ -35,9 +35,9 @@ const PLANS: Plan[] = [
     price_monthly: 0,
     price_annual: 0,
     commission: 15,
-    color: '#9C9189',
+    color: '#6B7280',
     bgClass: 'bg-white',
-    borderClass: 'border-[#E0DDD8]',
+    borderClass: 'border-[#E5E7EB]',
     icon: Shield,
     features: [
       { fr: 'Profil visible dans la recherche', dr: 'ملفك ظاهر في البحث', included: true },
@@ -79,9 +79,9 @@ const PLANS: Plan[] = [
     price_monthly: 60,
     price_annual: 50,
     commission: 10,
-    color: '#F5A623',
-    bgClass: 'bg-[#1A1614]',
-    borderClass: 'border-[#F5A623]',
+    color: '#10B981',
+    bgClass: 'bg-[#111827]',
+    borderClass: 'border-[#10B981]',
     icon: Crown,
     badge_fr: 'Recommandé',
     badge_dr: 'موصى به',
@@ -131,7 +131,7 @@ export default function SubscriptionPage() {
       {/* Back */}
       <button
         onClick={() => router.back()}
-        className="flex items-center gap-2 text-[#9C9189] hover:text-[#1A1614] mb-6 transition-colors"
+        className="flex items-center gap-2 text-[#6B7280] hover:text-[#111827] mb-6 transition-colors"
       >
         <ArrowLeft size={18} />
         <span className="text-sm">{lang === 'dr' ? 'ارجع' : 'Retour'}</span>
@@ -139,13 +139,13 @@ export default function SubscriptionPage() {
 
       {/* Header */}
       <div className="mb-8 text-center">
-        <div className="w-14 h-14 bg-[#F5A623]/10 rounded-[16px] flex items-center justify-center mx-auto mb-4">
-          <Crown size={26} className="text-[#F5A623]" />
+        <div className="w-14 h-14 bg-[#10B981]/10 rounded-[16px] flex items-center justify-center mx-auto mb-4">
+          <Crown size={26} className="text-[#10B981]" />
         </div>
-        <h1 className={`text-2xl font-display font-bold text-[#1A1614] mb-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <h1 className={`text-2xl font-display font-bold text-[#111827] mb-2 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'اختار خطتك' : 'Choisissez votre plan'}
         </h1>
-        <p className={`text-[#9C9189] text-sm ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <p className={`text-[#6B7280] text-sm ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr'
             ? 'طوّر خدمتك واكسب أكثر مع خطط خدامات للحرفيين'
             : 'Développez votre activité et gagnez plus avec Khadamat'}
@@ -158,7 +158,7 @@ export default function SubscriptionPage() {
           onClick={() => setBilling('monthly')}
           className={cn(
             'text-sm font-semibold transition-colors',
-            billing === 'monthly' ? 'text-[#1A1614]' : 'text-[#9C9189]'
+            billing === 'monthly' ? 'text-[#111827]' : 'text-[#6B7280]'
           )}
         >
           {lang === 'dr' ? 'شهري' : 'Mensuel'}
@@ -167,7 +167,7 @@ export default function SubscriptionPage() {
           onClick={() => setBilling(b => b === 'monthly' ? 'annual' : 'monthly')}
           className={cn(
             'relative w-12 h-6 rounded-full transition-colors',
-            billing === 'annual' ? 'bg-[#F5A623]' : 'bg-[#E0DDD8]'
+            billing === 'annual' ? 'bg-[#10B981]' : 'bg-[#E5E7EB]'
           )}
         >
           <span className={cn(
@@ -179,11 +179,11 @@ export default function SubscriptionPage() {
           onClick={() => setBilling('annual')}
           className={cn(
             'flex items-center gap-1.5 text-sm font-semibold transition-colors',
-            billing === 'annual' ? 'text-[#1A1614]' : 'text-[#9C9189]'
+            billing === 'annual' ? 'text-[#111827]' : 'text-[#6B7280]'
           )}
         >
           {lang === 'dr' ? 'سنوي' : 'Annuel'}
-          <span className="text-[10px] font-bold text-[#27AE60] bg-[#27AE60]/10 px-1.5 py-0.5 rounded-full">
+          <span className="text-[10px] font-bold text-[#16A34A] bg-[#16A34A]/10 px-1.5 py-0.5 rounded-full">
             -2 {lang === 'dr' ? 'أشهر مجاناً' : 'mois offerts'}
           </span>
         </button>
@@ -213,7 +213,7 @@ export default function SubscriptionPage() {
                   <div className="flex items-center gap-2 mb-1">
                     <h2 className={cn(
                       'text-lg font-display font-bold',
-                      isPremium ? 'text-white' : 'text-[#1A1614]'
+                      isPremium ? 'text-white' : 'text-[#111827]'
                     )}>
                       {lang === 'dr' ? plan.name_dr : plan.name_fr}
                     </h2>
@@ -221,30 +221,30 @@ export default function SubscriptionPage() {
                       <span className={cn(
                         'text-[10px] font-bold px-2 py-0.5 rounded-full',
                         isPremium
-                          ? 'bg-[#F5A623] text-[#1A1614]'
+                          ? 'bg-[#10B981] text-[#111827]'
                           : 'bg-[#3B82F6]/15 text-[#3B82F6]'
                       )}>
                         {lang === 'dr' ? plan.badge_dr : plan.badge_fr}
                       </span>
                     )}
                     {isCurrent && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#9C9189]/15 text-[#9C9189]">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#6B7280]/15 text-[#6B7280]">
                         {lang === 'dr' ? 'حالي' : 'Actuel'}
                       </span>
                     )}
                   </div>
                   <div className="flex items-baseline gap-1">
-                    <span className={cn('text-3xl font-display font-bold', isPremium ? 'text-[#F5A623]' : 'text-[#1A1614]')}>
+                    <span className={cn('text-3xl font-display font-bold', isPremium ? 'text-[#10B981]' : 'text-[#111827]')}>
                       {price === 0 ? (lang === 'dr' ? 'مجاني' : 'Gratuit') : `${price} DT`}
                     </span>
                     {price > 0 && (
-                      <span className={cn('text-sm', isPremium ? 'text-[#9C9189]' : 'text-[#9C9189]')}>
+                      <span className={cn('text-sm', isPremium ? 'text-[#6B7280]' : 'text-[#6B7280]')}>
                         /{lang === 'dr' ? 'شهر' : 'mois'}
                       </span>
                     )}
                   </div>
                   {billing === 'annual' && plan.price_monthly > 0 && (
-                    <p className={cn('text-xs mt-0.5', isPremium ? 'text-[#9C9189]' : 'text-[#9C9189]')}>
+                    <p className={cn('text-xs mt-0.5', isPremium ? 'text-[#6B7280]' : 'text-[#6B7280]')}>
                       {lang === 'dr'
                         ? `عوض ${plan.price_monthly} DT/شهر`
                         : `au lieu de ${plan.price_monthly} DT/mois`}
@@ -262,7 +262,7 @@ export default function SubscriptionPage() {
               {/* Commission highlight */}
               <div className={cn(
                 'flex items-center gap-2 rounded-[10px] px-3 py-2 mb-4 text-sm font-semibold',
-                isPremium ? 'bg-[#F5A623]/15 text-[#F5A623]' : 'bg-[#F7F5F2] text-[#1A1614]'
+                isPremium ? 'bg-[#10B981]/15 text-[#10B981]' : 'bg-[#F8FAF9] text-[#111827]'
               )}>
                 <Zap size={14} style={{ color: plan.color }} />
                 <span className={lang === 'dr' ? 'font-arabic' : ''}>
@@ -280,16 +280,16 @@ export default function SubscriptionPage() {
                         <Check size={10} style={{ color: plan.color }} />
                       </span>
                     ) : (
-                      <span className="w-4 h-4 rounded-full bg-[#E0DDD8]/50 flex items-center justify-center flex-shrink-0">
-                        <X size={10} className="text-[#9C9189]" />
+                      <span className="w-4 h-4 rounded-full bg-[#E5E7EB]/50 flex items-center justify-center flex-shrink-0">
+                        <X size={10} className="text-[#6B7280]" />
                       </span>
                     )}
                     <span className={cn(
                       'text-sm',
                       lang === 'dr' ? 'font-arabic' : '',
                       f.included
-                        ? isPremium ? 'text-white/90' : 'text-[#1A1614]'
-                        : 'text-[#9C9189] line-through'
+                        ? isPremium ? 'text-white/90' : 'text-[#111827]'
+                        : 'text-[#6B7280] line-through'
                     )}>
                       {lang === 'dr' ? f.dr : f.fr}
                     </span>
@@ -301,7 +301,7 @@ export default function SubscriptionPage() {
               {isCurrent ? (
                 <div className={cn(
                   'w-full rounded-[12px] py-3 text-center text-sm font-semibold',
-                  'bg-[#F7F5F2] text-[#9C9189]'
+                  'bg-[#F8FAF9] text-[#6B7280]'
                 )}>
                   {lang === 'dr' ? 'خطتك الحالية' : 'Plan actuel'}
                 </div>
@@ -312,8 +312,8 @@ export default function SubscriptionPage() {
                   className={cn(
                     'w-full rounded-[12px] py-3 text-sm font-bold transition-all active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-60',
                     isPremium
-                      ? 'bg-[#F5A623] text-[#1A1614] hover:bg-[#D4881A]'
-                      : 'bg-[#1A1614] text-white hover:bg-[#2a2320]'
+                      ? 'bg-[#10B981] text-[#111827] hover:bg-[#059669]'
+                      : 'bg-[#111827] text-white hover:bg-[#1F2937]'
                   )}
                 >
                   {isLoading && (
@@ -334,17 +334,17 @@ export default function SubscriptionPage() {
       </div>
 
       {/* Perks section */}
-      <div className="bg-white rounded-[20px] border border-[#E0DDD8] p-5 mb-6">
-        <h3 className={`font-display font-bold text-[#1A1614] mb-4 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <div className="bg-white rounded-[20px] border border-[#E5E7EB] p-5 mb-6">
+        <h3 className={`font-display font-bold text-[#111827] mb-4 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'مزايا الاشتراك' : 'Pourquoi s\'abonner ?'}
         </h3>
         <div className="grid grid-cols-2 gap-3">
           {PERKS.map((perk, i) => (
             <div key={i} className="flex items-start gap-2.5">
-              <div className="w-8 h-8 bg-[#F5A623]/10 rounded-[8px] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <perk.icon size={15} className="text-[#F5A623]" />
+              <div className="w-8 h-8 bg-[#10B981]/10 rounded-[8px] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <perk.icon size={15} className="text-[#10B981]" />
               </div>
-              <p className={`text-xs text-[#9C9189] leading-snug ${lang === 'dr' ? 'font-arabic' : ''}`}>
+              <p className={`text-xs text-[#6B7280] leading-snug ${lang === 'dr' ? 'font-arabic' : ''}`}>
                 {lang === 'dr' ? perk.dr : perk.fr}
               </p>
             </div>
@@ -353,7 +353,7 @@ export default function SubscriptionPage() {
       </div>
 
       {/* Footer note */}
-      <p className={`text-center text-xs text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <p className={`text-center text-xs text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>
         {lang === 'dr'
           ? 'يمكنك إلغاء الاشتراك في أي وقت. لا التزامات طويلة الأمد.'
           : 'Résiliable à tout moment. Aucun engagement long terme.'}

@@ -40,13 +40,13 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
   if (submitted) {
     return (
       <div className="max-w-md mx-auto px-4 py-20 text-center">
-        <div className="w-20 h-20 bg-[#F5A623]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle size={40} className="text-[#27AE60]" />
+        <div className="w-20 h-20 bg-[#10B981]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle size={40} className="text-[#16A34A]" />
         </div>
-        <h2 className={`text-2xl font-display font-bold text-[#1A1614] mb-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <h2 className={`text-2xl font-display font-bold text-[#111827] mb-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'شكراً على تقييمك!' : 'Merci pour votre avis !'}
         </h2>
-        <p className={`text-[#9C9189] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <p className={`text-[#6B7280] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr'
             ? 'تقييمك يساعد الحرفيين وبقية المستخدمين على الاختيار.'
             : 'Votre avis aide les artisans et la communauté à s\'améliorer.'}
@@ -64,30 +64,30 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
     <div className="max-w-lg mx-auto px-4 sm:px-6 py-6 pb-24">
       <button
         onClick={() => router.back()}
-        className="flex items-center gap-2 text-[#9C9189] hover:text-[#1A1614] mb-6 transition-colors"
+        className="flex items-center gap-2 text-[#6B7280] hover:text-[#111827] mb-6 transition-colors"
       >
         <ArrowLeft size={18} />
         <span className="text-sm">{t('back')}</span>
       </button>
 
-      <h1 className={`text-2xl font-display font-bold text-[#1A1614] mb-1 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <h1 className={`text-2xl font-display font-bold text-[#111827] mb-1 ${lang === 'dr' ? 'font-arabic' : ''}`}>
         {t('leave_review')}
       </h1>
-      <p className={`text-[#9C9189] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <p className={`text-[#6B7280] mb-8 ${lang === 'dr' ? 'font-arabic' : ''}`}>
         {t('your_experience')}
       </p>
 
       {/* Pro info */}
       {pro && (
-        <div className="flex items-center gap-4 bg-[#F7F5F2] rounded-[20px] p-4 mb-8">
+        <div className="flex items-center gap-4 bg-[#F8FAF9] rounded-[20px] p-4 mb-8">
           <Avatar src={pro.user?.avatar_url} name={pro.user?.full_name ?? ''} size="lg" />
           <div>
-            <p className="font-semibold text-[#1A1614]">{pro.user?.full_name}</p>
-            <p className={`text-sm text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+            <p className="font-semibold text-[#111827]">{pro.user?.full_name}</p>
+            <p className={`text-sm text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {lang === 'dr' ? booking.category?.name_dr : booking.category?.name_fr}
             </p>
             {booking.price_final && (
-              <p className="text-sm font-medium text-[#F5A623] mt-0.5">{booking.price_final} DT</p>
+              <p className="text-sm font-medium text-[#10B981] mt-0.5">{booking.price_final} DT</p>
             )}
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
 
       {/* Star rating */}
       <div className="mb-8">
-        <p className={`text-sm font-semibold text-[#1A1614] mb-4 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <p className={`text-sm font-semibold text-[#111827] mb-4 ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'أعطي تقييمك' : 'Donnez une note'}
         </p>
         <div className="flex gap-3 justify-center">
@@ -110,14 +110,14 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
             >
               <span className={
                 star <= (hovered || rating)
-                  ? 'text-[#F5A623] drop-shadow-sm'
-                  : 'text-[#E0DDD8]'
+                  ? 'text-[#10B981] drop-shadow-sm'
+                  : 'text-[#E5E7EB]'
               }>★</span>
             </button>
           ))}
         </div>
         {(hovered || rating) > 0 && (
-          <p className={`text-center text-sm font-medium text-[#9C9189] mt-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <p className={`text-center text-sm font-medium text-[#6B7280] mt-3 ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {ratingLabels[lang][hovered || rating]}
           </p>
         )}
@@ -125,7 +125,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
 
       {/* Comment */}
       <div className="mb-8">
-        <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+        <label className={`text-sm font-semibold text-[#111827] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
           {lang === 'dr' ? 'رأيك (اختياري)' : 'Votre commentaire (optionnel)'}
         </label>
         <textarea
@@ -135,9 +135,9 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
           placeholder={lang === 'dr'
             ? 'شنو كان رأيك في الخدمة؟...'
             : 'Décrivez votre expérience avec ce pro...'}
-          className={`w-full bg-white border border-[#E0DDD8] rounded-[12px] px-4 py-3 text-sm text-[#1A1614] placeholder:text-[#9C9189] focus:outline-none focus:ring-2 focus:ring-[#F5A623] focus:border-transparent resize-none transition-all ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
+          className={`w-full bg-white border border-[#E5E7EB] rounded-[12px] px-4 py-3 text-sm text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent resize-none transition-all ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
         />
-        <p className="text-xs text-[#9C9189] mt-1.5 text-right">{comment.length}/300</p>
+        <p className="text-xs text-[#6B7280] mt-1.5 text-right">{comment.length}/300</p>
       </div>
 
       <Button

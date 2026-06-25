@@ -67,13 +67,13 @@ function SearchContent() {
       {/* Search Bar */}
       <div className="flex gap-3 mb-5">
         <div className="flex-1 relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9C9189]" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6B7280]" size={18} />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('search_placeholder')}
-            className={`w-full bg-white border border-[#E0DDD8] rounded-[12px] pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623] ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
+            className={`w-full bg-white border border-[#E5E7EB] rounded-[12px] pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
           />
         </div>
         <Button
@@ -93,30 +93,30 @@ function SearchContent() {
 
       {/* Filters Panel */}
       {showFilters && (
-        <div className="bg-white rounded-[16px] border border-[#E0DDD8] p-5 mb-5">
+        <div className="bg-white rounded-[16px] border border-[#E5E7EB] p-5 mb-5">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             <div>
-              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('filter_city')}</label>
-              <select value={city} onChange={e => setCity(e.target.value)} className="w-full bg-[#F7F5F2] border border-[#E0DDD8] rounded-[8px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]">
+              <label className={`text-sm font-semibold text-[#111827] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('filter_city')}</label>
+              <select value={city} onChange={e => setCity(e.target.value)} className="w-full bg-[#F8FAF9] border border-[#E5E7EB] rounded-[8px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]">
                 <option value="">{t('all_cities')}</option>
                 {CITIES.map(c => <option key={c} value={c}>{t(c as 'tunis')}</option>)}
               </select>
             </div>
             <div>
-              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('filter_rating')}</label>
+              <label className={`text-sm font-semibold text-[#111827] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('filter_rating')}</label>
               <div className="flex gap-2">
                 {RATINGS.map(r => (
-                  <button key={r} onClick={() => setMinRating(minRating === r ? 0 : r)} className={cn('px-3 py-1.5 rounded-full text-sm font-medium border transition-colors', minRating === r ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}>
+                  <button key={r} onClick={() => setMinRating(minRating === r ? 0 : r)} className={cn('px-3 py-1.5 rounded-full text-sm font-medium border transition-colors', minRating === r ? 'bg-[#111827] text-white border-[#111827]' : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:border-[#111827]')}>
                     {r}+ ★
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('sort_by')}</label>
+              <label className={`text-sm font-semibold text-[#111827] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('sort_by')}</label>
               <div className="flex gap-2 flex-wrap">
                 {[{ key: 'rating', label: t('sort_rating') }, { key: 'price', label: t('sort_price') }].map(s => (
-                  <button key={s.key} onClick={() => setSortBy(s.key)} className={cn('px-3 py-1.5 rounded-full text-sm font-medium border transition-colors', sortBy === s.key ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}>
+                  <button key={s.key} onClick={() => setSortBy(s.key)} className={cn('px-3 py-1.5 rounded-full text-sm font-medium border transition-colors', sortBy === s.key ? 'bg-[#111827] text-white border-[#111827]' : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:border-[#111827]')}>
                     {s.label}
                   </button>
                 ))}
@@ -135,7 +135,7 @@ function SearchContent() {
       <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1 mb-5">
         <button
           onClick={() => setCategory('')}
-          className={cn('flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors', !category ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}
+          className={cn('flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors', !category ? 'bg-[#111827] text-white border-[#111827]' : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:border-[#111827]')}
         >
           {lang === 'dr' ? 'الكل' : 'Tous'}
         </button>
@@ -143,7 +143,7 @@ function SearchContent() {
           <button
             key={cat.slug}
             onClick={() => setCategory(category === cat.slug ? '' : cat.slug)}
-            className={cn('flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-colors', category === cat.slug ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}
+            className={cn('flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-colors', category === cat.slug ? 'bg-[#111827] text-white border-[#111827]' : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:border-[#111827]')}
           >
             <span>{cat.icon}</span>
             <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? cat.name_dr : cat.name_fr}</span>
@@ -153,20 +153,20 @@ function SearchContent() {
 
       {/* Results header + view toggle */}
       <div className="flex items-center justify-between mb-4">
-        <p className={`text-sm text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>
-          <span className="font-semibold text-[#1A1614]">{results.length}</span> {t('results_found')}
+        <p className={`text-sm text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+          <span className="font-semibold text-[#111827]">{results.length}</span> {t('results_found')}
         </p>
-        <div className="flex items-center bg-white border border-[#E0DDD8] rounded-[10px] p-1 gap-1">
+        <div className="flex items-center bg-white border border-[#E5E7EB] rounded-[10px] p-1 gap-1">
           <button
             onClick={() => setView('list')}
-            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-all', view === 'list' ? 'bg-[#1A1614] text-white' : 'text-[#9C9189] hover:text-[#1A1614]')}
+            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-all', view === 'list' ? 'bg-[#111827] text-white' : 'text-[#6B7280] hover:text-[#111827]')}
           >
             <List size={14} />
             <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? 'قائمة' : 'Liste'}</span>
           </button>
           <button
             onClick={() => setView('map')}
-            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-all', view === 'map' ? 'bg-[#1A1614] text-white' : 'text-[#9C9189] hover:text-[#1A1614]')}
+            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-all', view === 'map' ? 'bg-[#111827] text-white' : 'text-[#6B7280] hover:text-[#111827]')}
           >
             <Map size={14} />
             <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? 'خريطة' : 'Carte'}</span>
@@ -176,7 +176,7 @@ function SearchContent() {
 
       {/* Map View */}
       {view === 'map' && (
-        <div className="rounded-[20px] overflow-hidden border border-[#E0DDD8] shadow-sm" style={{ height: 'calc(100vh - 320px)', minHeight: '400px' }}>
+        <div className="rounded-[20px] overflow-hidden border border-[#E5E7EB] shadow-sm" style={{ height: 'calc(100vh - 320px)', minHeight: '400px' }}>
           <ProMap pros={results} lang={lang} />
         </div>
       )}
@@ -195,7 +195,7 @@ function SearchContent() {
         ) : (
           <div className="text-center py-20">
             <p className="text-4xl mb-4">🔍</p>
-            <p className={`text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('no_pros_found')}</p>
+            <p className={`text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('no_pros_found')}</p>
           </div>
         )
       )}

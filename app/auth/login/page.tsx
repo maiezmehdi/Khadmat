@@ -77,16 +77,16 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-[20px] bg-[#F5A623]/10 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-[20px] bg-[#10B981]/10 mb-4">
             <span className="text-3xl">🏠</span>
           </div>
-          <h1 className="text-3xl font-display font-bold text-[#1A1614] leading-none">
-            Khad<span className="text-[#F5A623]">amat</span>
+          <h1 className="text-3xl font-display font-bold text-[#111827] leading-none">
+            Khad<span className="text-[#10B981]">amat</span>
           </h1>
-          <p className="text-sm font-arabic text-[#9C9189] mt-1">خدامات</p>
+          <p className="text-sm font-arabic text-[#6B7280] mt-1">خدامات</p>
         </div>
 
-        <div className="bg-white rounded-[24px] border border-[#E0DDD8] shadow-sm overflow-hidden">
+        <div className="bg-white rounded-[24px] border border-[#E5E7EB] shadow-sm overflow-hidden">
 
           {/* Lang switch */}
           <div className="flex justify-end px-5 pt-4">
@@ -96,7 +96,7 @@ export default function LoginPage() {
           {step === 'form' ? (
             <>
               {/* Tabs */}
-              <div className="mx-5 mt-3 mb-5 bg-[#F7F5F2] rounded-[14px] p-1 flex">
+              <div className="mx-5 mt-3 mb-5 bg-[#F8FAF9] rounded-[14px] p-1 flex">
                 {(['login', 'signup'] as AuthTab[]).map(tabKey => (
                   <button
                     key={tabKey}
@@ -104,8 +104,8 @@ export default function LoginPage() {
                     className={cn(
                       'flex-1 py-2.5 text-sm font-semibold rounded-[11px] transition-all duration-200',
                       tab === tabKey
-                        ? 'bg-white text-[#1A1614] shadow-sm'
-                        : 'text-[#9C9189] hover:text-[#1A1614]'
+                        ? 'bg-white text-[#111827] shadow-sm'
+                        : 'text-[#6B7280] hover:text-[#111827]'
                     )}
                   >
                     <span className={lang === 'dr' ? 'font-arabic' : ''}>
@@ -139,7 +139,7 @@ export default function LoginPage() {
                     icon={<Phone size={16} />}
                     maxLength={8}
                   />
-                  <p className="text-xs text-[#9C9189] mt-1.5 ml-1">+216 · Tunisia 🇹🇳</p>
+                  <p className="text-xs text-[#6B7280] mt-1.5 ml-1">+216 · Tunisia 🇹🇳</p>
                 </div>
 
                 <Button type="submit" fullWidth size="lg" loading={loading}>
@@ -148,14 +148,14 @@ export default function LoginPage() {
                   </span>
                 </Button>
 
-                <p className={cn('text-center text-xs text-[#9C9189]', lang === 'dr' ? 'font-arabic' : '')}>
+                <p className={cn('text-center text-xs text-[#6B7280]', lang === 'dr' ? 'font-arabic' : '')}>
                   {tab === 'login'
                     ? (lang === 'dr' ? 'ماعندكش حساب؟ ' : 'Pas encore de compte ? ')
                     : (lang === 'dr' ? 'عندك حساب؟ ' : 'Déjà un compte ? ')}
                   <button
                     type="button"
                     onClick={() => switchTab(tab === 'login' ? 'signup' : 'login')}
-                    className="text-[#F5A623] font-semibold"
+                    className="text-[#10B981] font-semibold"
                   >
                     {tab === 'login'
                       ? (lang === 'dr' ? 'سجّل الآن' : "S'inscrire")
@@ -168,22 +168,22 @@ export default function LoginPage() {
             <div className="px-5 pb-5 pt-2">
               <button
                 onClick={() => { setStep('form'); setOtp(''); }}
-                className="flex items-center gap-1 text-sm text-[#9C9189] hover:text-[#1A1614] mb-5 transition-colors"
+                className="flex items-center gap-1 text-sm text-[#6B7280] hover:text-[#111827] mb-5 transition-colors"
               >
                 <ArrowLeft size={14} />
                 <span>{t('back')}</span>
               </button>
 
               <div className="text-center mb-6">
-                <div className="w-14 h-14 rounded-[16px] bg-[#F5A623]/10 flex items-center justify-center text-2xl mx-auto mb-3">
+                <div className="w-14 h-14 rounded-[16px] bg-[#10B981]/10 flex items-center justify-center text-2xl mx-auto mb-3">
                   💬
                 </div>
-                <h2 className={cn('text-xl font-display font-bold text-[#1A1614] mb-1', lang === 'dr' ? 'font-arabic' : '')}>
+                <h2 className={cn('text-xl font-display font-bold text-[#111827] mb-1', lang === 'dr' ? 'font-arabic' : '')}>
                   {lang === 'dr' ? 'أدخل الكود' : 'Vérification'}
                 </h2>
-                <p className={cn('text-sm text-[#9C9189]', lang === 'dr' ? 'font-arabic' : '')}>
+                <p className={cn('text-sm text-[#6B7280]', lang === 'dr' ? 'font-arabic' : '')}>
                   {lang === 'dr' ? 'أرسلنا كود لـ' : 'Code envoyé au'}{' '}
-                  <span className="font-semibold text-[#1A1614]">+216 {phone}</span>
+                  <span className="font-semibold text-[#111827]">+216 {phone}</span>
                 </p>
               </div>
 
@@ -202,7 +202,7 @@ export default function LoginPage() {
                 </Button>
                 <button
                   type="button"
-                  className={cn('text-sm text-[#F5A623] font-semibold text-center', lang === 'dr' ? 'font-arabic' : '')}
+                  className={cn('text-sm text-[#10B981] font-semibold text-center', lang === 'dr' ? 'font-arabic' : '')}
                   onClick={() => toast(lang === 'dr' ? 'تم إعادة إرسال الكود' : 'Code renvoyé !', 'info')}
                 >
                   {t('resend_otp')}
@@ -212,7 +212,7 @@ export default function LoginPage() {
           )}
         </div>
 
-        <p className="text-center text-xs text-[#9C9189] mt-6 px-4">
+        <p className="text-center text-xs text-[#6B7280] mt-6 px-4">
           {lang === 'dr'
             ? <span className="font-arabic">بالمتابعة، أنت توافق على شروط الاستخدام وسياسة الخصوصية</span>
             : "En continuant, vous acceptez nos conditions d'utilisation"}

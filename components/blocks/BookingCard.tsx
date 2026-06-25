@@ -36,7 +36,7 @@ export function BookingCard({ booking, viewAs = 'client', onAccept, onCancel, on
   const statusKey = statusLabels[booking.status];
 
   return (
-    <div className="bg-white rounded-[16px] p-4 shadow-sm border border-[#E0DDD8]">
+    <div className="bg-white rounded-[16px] p-4 shadow-sm border border-[#E5E7EB]">
       {/* Header */}
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-3">
@@ -44,8 +44,8 @@ export function BookingCard({ booking, viewAs = 'client', onAccept, onCancel, on
             <Avatar src={pro.user?.avatar_url} name={pro.user?.full_name ?? ''} size="md" />
           )}
           <div>
-            <p className="font-semibold text-[#1A1614] text-sm">{pro?.user?.full_name}</p>
-            <p className="text-xs text-[#9C9189]">{lang === 'dr' ? category?.name_dr : category?.name_fr}</p>
+            <p className="font-semibold text-[#111827] text-sm">{pro?.user?.full_name}</p>
+            <p className="text-xs text-[#6B7280]">{lang === 'dr' ? category?.name_dr : category?.name_fr}</p>
           </div>
         </div>
         <span className={cn('text-xs font-semibold px-2.5 py-1 rounded-full', getStatusColor(booking.status))}>
@@ -55,18 +55,18 @@ export function BookingCard({ booking, viewAs = 'client', onAccept, onCancel, on
 
       {/* Details */}
       <div className="flex flex-col gap-1.5 mb-4">
-        <div className="flex items-center gap-2 text-sm text-[#9C9189]">
+        <div className="flex items-center gap-2 text-sm text-[#6B7280]">
           <CalendarDays size={14} />
           <span>{formatDateTime(booking.scheduled_at)}</span>
         </div>
-        <div className="flex items-center gap-2 text-sm text-[#9C9189]">
+        <div className="flex items-center gap-2 text-sm text-[#6B7280]">
           <MapPin size={14} />
           <span className="truncate">{booking.address}</span>
         </div>
         {booking.price_quoted && (
           <div className="text-sm">
-            <span className="text-[#9C9189]">Prix : </span>
-            <span className="font-semibold text-[#1A1614]">{booking.price_quoted} DT</span>
+            <span className="text-[#6B7280]">Prix : </span>
+            <span className="font-semibold text-[#111827]">{booking.price_quoted} DT</span>
           </div>
         )}
       </div>

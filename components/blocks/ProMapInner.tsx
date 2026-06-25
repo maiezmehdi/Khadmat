@@ -11,7 +11,7 @@ function createAvatarIcon(pro: ProProfile) {
   const name = pro.user?.full_name ?? '';
   const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
   const isPremium = pro.subscription === 'premium';
-  const borderColor = isPremium ? '#F5A623' : '#1A1614';
+  const borderColor = isPremium ? '#10B981' : '#111827';
   const avatarUrl = pro.user?.avatar_url ?? '';
 
   return L.divIcon({
@@ -26,7 +26,7 @@ function createAvatarIcon(pro: ProProfile) {
         ">
           ${avatarUrl
             ? `<img src="${avatarUrl}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />`
-            : `<span style="font-size:14px;font-weight:700;color:#1A1614;font-family:sans-serif">${initials}</span>`
+            : `<span style="font-size:14px;font-weight:700;color:#111827;font-family:sans-serif">${initials}</span>`
           }
         </div>
         <div style="
@@ -85,19 +85,19 @@ export default function ProMapInner({
                     />
                   )}
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: '14px', color: '#1A1614', lineHeight: 1.2 }}>
+                    <div style={{ fontWeight: 700, fontSize: '14px', color: '#111827', lineHeight: 1.2 }}>
                       {pro.user?.full_name}
-                      {pro.is_approved && <span style={{ color: '#27AE60', marginLeft: '4px', fontSize: '12px' }}>✓</span>}
+                      {pro.is_approved && <span style={{ color: '#16A34A', marginLeft: '4px', fontSize: '12px' }}>✓</span>}
                     </div>
-                    <div style={{ fontSize: '12px', color: '#9C9189', marginTop: '2px' }}>
+                    <div style={{ fontSize: '12px', color: '#6B7280', marginTop: '2px' }}>
                       {pro.user?.city} · ★ {pro.rating_avg.toFixed(1)}
                     </div>
                   </div>
                 </div>
                 {service && (
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#F5A623', marginBottom: '10px' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#10B981', marginBottom: '10px' }}>
                     {lang === 'dr' ? 'من' : 'Dès'} {service.price_from} DT
-                    <span style={{ fontWeight: 400, color: '#9C9189', fontSize: '11px' }}>
+                    <span style={{ fontWeight: 400, color: '#6B7280', fontSize: '11px' }}>
                       {service.price_unit === 'heure' ? (lang === 'dr' ? '/س' : '/h') : ''}
                     </span>
                   </div>
@@ -106,7 +106,7 @@ export default function ProMapInner({
                   href={`/pro/${pro.id}`}
                   style={{
                     display: 'block', width: '100%', padding: '8px 12px',
-                    background: '#F5A623', color: '#1A1614', borderRadius: '10px',
+                    background: '#10B981', color: '#111827', borderRadius: '10px',
                     textAlign: 'center', fontSize: '13px', fontWeight: 700,
                     textDecoration: 'none', boxSizing: 'border-box',
                   }}

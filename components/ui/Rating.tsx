@@ -16,17 +16,17 @@ export function Rating({ value, count, size = 'sm', className }: RatingProps) {
         {[1, 2, 3, 4, 5].map((star) => (
           <span
             key={star}
-            className={cn(starSize, star <= Math.round(value) ? 'text-[#F5A623]' : 'text-[#E0DDD8]')}
+            className={cn(starSize, star <= Math.round(value) ? 'text-[#10B981]' : 'text-[#E5E7EB]')}
           >
             ★
           </span>
         ))}
       </div>
-      <span className={cn('font-semibold text-[#1A1614]', size === 'sm' ? 'text-sm' : 'text-base')}>
+      <span className={cn('font-semibold text-[#111827]', size === 'sm' ? 'text-sm' : 'text-base')}>
         {value.toFixed(1)}
       </span>
       {count !== undefined && (
-        <span className="text-[#9C9189] text-xs">({count})</span>
+        <span className="text-[#6B7280] text-xs">({count})</span>
       )}
     </div>
   );

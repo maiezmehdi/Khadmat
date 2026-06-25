@@ -30,9 +30,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const remove = (id: string) => setToasts(prev => prev.filter(t => t.id !== id));
 
   const icons: Record<ToastType, ReactNode> = {
-    success: <CheckCircle size={18} className="text-[#27AE60]" />,
+    success: <CheckCircle size={18} className="text-[#16A34A]" />,
     error: <XCircle size={18} className="text-[#E8472A]" />,
-    info: <Info size={18} className="text-[#F5A623]" />,
+    info: <Info size={18} className="text-[#10B981]" />,
   };
 
   return (
@@ -43,13 +43,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
           <div
             key={t.id}
             className={cn(
-              'flex items-center gap-3 bg-white rounded-[12px] shadow-lg px-4 py-3 border border-[#E0DDD8]',
+              'flex items-center gap-3 bg-white rounded-[12px] shadow-lg px-4 py-3 border border-[#E5E7EB]',
               'animate-[slideIn_0.2s_ease]'
             )}
           >
             {icons[t.type]}
-            <p className="text-sm text-[#1A1614] flex-1">{t.message}</p>
-            <button onClick={() => remove(t.id)} className="text-[#9C9189] hover:text-[#1A1614]">
+            <p className="text-sm text-[#111827] flex-1">{t.message}</p>
+            <button onClick={() => remove(t.id)} className="text-[#6B7280] hover:text-[#111827]">
               <X size={14} />
             </button>
           </div>

@@ -41,8 +41,8 @@ function CategoryItem({ cat, lang, active }: { cat: Category; lang: string; acti
       <div className={cn(
         'flex flex-col items-center gap-2 p-3 rounded-[16px] transition-all duration-200 cursor-pointer',
         active
-          ? 'bg-[#1A1614]'
-          : 'bg-white hover:shadow-md hover:-translate-y-0.5 border border-[#E0DDD8] hover:border-[#F5A623]/50'
+          ? 'bg-[#111827]'
+          : 'bg-white hover:shadow-md hover:-translate-y-0.5 border border-[#E5E7EB] hover:border-[#10B981]/50'
       )}>
         <div
           className="w-11 h-11 rounded-[12px] flex items-center justify-center"
@@ -53,7 +53,7 @@ function CategoryItem({ cat, lang, active }: { cat: Category; lang: string; acti
         <span className={cn(
           'text-xs font-medium text-center leading-tight line-clamp-2',
           lang === 'dr' ? 'font-arabic' : '',
-          active ? 'text-white' : 'text-[#1A1614]'
+          active ? 'text-white' : 'text-[#111827]'
         )}>
           {name}
         </span>

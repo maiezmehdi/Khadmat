@@ -36,7 +36,7 @@ export function Avatar({ src, name, size = 'md', online, className }: AvatarProp
           className={cn('rounded-full object-cover', sizes[size])}
         />
       ) : (
-        <div className={cn('rounded-full bg-[#F5A623] flex items-center justify-center font-bold text-[#1A1614]', sizes[size])}>
+        <div className={cn('rounded-full bg-[#10B981] flex items-center justify-center font-bold text-[#111827]', sizes[size])}>
           {initials}
         </div>
       )}
@@ -44,7 +44,7 @@ export function Avatar({ src, name, size = 'md', online, className }: AvatarProp
         <span className={cn(
           'absolute bottom-0 right-0 rounded-full border-2 border-white',
           dotSizes[size],
-          online ? 'bg-[#27AE60]' : 'bg-[#9C9189]'
+          online ? 'bg-[#16A34A]' : 'bg-[#6B7280]'
         )} />
       )}
     </div>

@@ -75,10 +75,10 @@ export default function ProfilePage() {
           {coverPreview ? (
             <img src={coverPreview} alt="Cover" className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#1A1614] to-[#2a2320]">
+            <div className="w-full h-full bg-gradient-to-br from-[#111827] to-[#1F2937]">
               <div
                 className="absolute inset-0 opacity-30"
-                style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #F5A623, transparent)' }}
+                style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #10B981, transparent)' }}
               />
             </div>
           )}
@@ -112,9 +112,9 @@ export default function ProfilePage() {
             />
             <button
               onClick={() => avatarInputRef.current?.click()}
-              className="absolute bottom-0 right-0 w-8 h-8 bg-[#F5A623] rounded-full flex items-center justify-center border-2 border-white hover:bg-[#D4881A] transition-colors shadow-md"
+              className="absolute bottom-0 right-0 w-8 h-8 bg-[#10B981] rounded-full flex items-center justify-center border-2 border-white hover:bg-[#059669] transition-colors shadow-md"
             >
-              <Camera size={13} className="text-[#1A1614]" />
+              <Camera size={13} className="text-[#111827]" />
             </button>
             <input
               ref={avatarInputRef}
@@ -129,38 +129,38 @@ export default function ProfilePage() {
 
       <div className="px-4 sm:px-6">
         {/* Name & Info */}
-        <div className="bg-white rounded-[24px] border border-[#E0DDD8] p-6 mb-6">
+        <div className="bg-white rounded-[24px] border border-[#E5E7EB] p-6 mb-6">
           {editMode ? (
             <div className="flex flex-col gap-3">
               <div className="grid grid-cols-1 gap-3">
                 <div>
-                  <label className={`text-xs font-semibold text-[#9C9189] mb-1 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                  <label className={`text-xs font-semibold text-[#6B7280] mb-1 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
                     {lang === 'dr' ? 'الاسم الكامل' : 'Nom complet'}
                   </label>
                   <input
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    className="w-full border border-[#E0DDD8] rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]"
+                    className="w-full border border-[#E5E7EB] rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]"
                   />
                 </div>
                 <div>
-                  <label className={`text-xs font-semibold text-[#9C9189] mb-1 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                  <label className={`text-xs font-semibold text-[#6B7280] mb-1 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
                     {t('phone_number')}
                   </label>
                   <input
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
-                    className="w-full border border-[#E0DDD8] rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]"
+                    className="w-full border border-[#E5E7EB] rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]"
                   />
                 </div>
                 <div>
-                  <label className={`text-xs font-semibold text-[#9C9189] mb-1 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                  <label className={`text-xs font-semibold text-[#6B7280] mb-1 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
                     {lang === 'dr' ? 'المدينة' : 'Ville'}
                   </label>
                   <select
                     value={city}
                     onChange={e => setCity(e.target.value)}
-                    className="w-full border border-[#E0DDD8] rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]"
+                    className="w-full border border-[#E5E7EB] rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]"
                   >
                     {['Tunis', 'Sfax', 'Sousse', 'Monastir', 'Bizerte'].map(c => (
                       <option key={c}>{c}</option>
@@ -180,13 +180,13 @@ export default function ProfilePage() {
           ) : (
             <>
               <div className="text-center mb-4">
-                <h1 className="text-xl font-display font-bold text-[#1A1614] mb-0.5">{name}</h1>
-                <p className="text-sm text-[#9C9189]">{phone}</p>
-                <p className="text-sm text-[#9C9189]">{city}</p>
+                <h1 className="text-xl font-display font-bold text-[#111827] mb-0.5">{name}</h1>
+                <p className="text-sm text-[#6B7280]">{phone}</p>
+                <p className="text-sm text-[#6B7280]">{city}</p>
               </div>
               <button
                 onClick={() => setEditMode(true)}
-                className="flex items-center gap-1.5 mx-auto text-sm text-[#F5A623] font-semibold hover:underline"
+                className="flex items-center gap-1.5 mx-auto text-sm text-[#10B981] font-semibold hover:underline"
               >
                 <Pencil size={13} />
                 <span className={lang === 'dr' ? 'font-arabic' : ''}>
@@ -195,15 +195,15 @@ export default function ProfilePage() {
               </button>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-[#E0DDD8]">
+              <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-[#E5E7EB]">
                 {[
                   { label: lang === 'dr' ? 'الحجوزات' : 'Réservations', value: BOOKINGS.length },
                   { label: lang === 'dr' ? 'المنجزة' : 'Terminées', value: completedBookings },
                   { label: lang === 'dr' ? 'تقييماتي' : 'Avis donnés', value: 2 },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
-                    <p className="text-xl font-bold text-[#1A1614]">{stat.value}</p>
-                    <p className={`text-xs text-[#9C9189] mt-0.5 ${lang === 'dr' ? 'font-arabic' : ''}`}>{stat.label}</p>
+                    <p className="text-xl font-bold text-[#111827]">{stat.value}</p>
+                    <p className={`text-xs text-[#6B7280] mt-0.5 ${lang === 'dr' ? 'font-arabic' : ''}`}>{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -212,38 +212,38 @@ export default function ProfilePage() {
         </div>
 
         {/* Menu */}
-        <div className="bg-white rounded-[24px] border border-[#E0DDD8] overflow-hidden mb-6">
+        <div className="bg-white rounded-[24px] border border-[#E5E7EB] overflow-hidden mb-6">
           {menuItems.map((item, i) => (
             <div key={item.labelFr}>
-              {i > 0 && <div className="h-px bg-[#E0DDD8] mx-4" />}
+              {i > 0 && <div className="h-px bg-[#E5E7EB] mx-4" />}
               {item.isLang ? (
                 <div className="flex items-center justify-between px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-[#F7F5F2] rounded-[10px] flex items-center justify-center">
-                      <item.icon size={18} className="text-[#9C9189]" />
+                    <div className="w-9 h-9 bg-[#F8FAF9] rounded-[10px] flex items-center justify-center">
+                      <item.icon size={18} className="text-[#6B7280]" />
                     </div>
-                    <span className={`text-sm font-medium text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                    <span className={`text-sm font-medium text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
                       {lang === 'dr' ? item.labelDr : item.labelFr}
                     </span>
                   </div>
                   <LangSwitch />
                 </div>
               ) : (
-                <Link href={item.href} className="flex items-center justify-between px-5 py-4 hover:bg-[#F7F5F2] transition-colors">
+                <Link href={item.href} className="flex items-center justify-between px-5 py-4 hover:bg-[#F8FAF9] transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className={`w-9 h-9 rounded-[10px] flex items-center justify-center ${item.isSubscription ? 'bg-[#F5A623]/10' : 'bg-[#F7F5F2]'}`}>
-                      <item.icon size={18} className={item.isSubscription ? 'text-[#F5A623]' : 'text-[#9C9189]'} />
+                    <div className={`w-9 h-9 rounded-[10px] flex items-center justify-center ${item.isSubscription ? 'bg-[#10B981]/10' : 'bg-[#F8FAF9]'}`}>
+                      <item.icon size={18} className={item.isSubscription ? 'text-[#10B981]' : 'text-[#6B7280]'} />
                     </div>
-                    <span className={`text-sm font-medium text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                    <span className={`text-sm font-medium text-[#111827] ${lang === 'dr' ? 'font-arabic' : ''}`}>
                       {lang === 'dr' ? item.labelDr : item.labelFr}
                     </span>
                     {item.isSubscription && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#F5A623]/15 text-[#D4881A]">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#059669]">
                         {lang === 'dr' ? 'جديد' : 'Nouveau'}
                       </span>
                     )}
                   </div>
-                  <ChevronRight size={16} className="text-[#9C9189]" />
+                  <ChevronRight size={16} className="text-[#6B7280]" />
                 </Link>
               )}
             </div>
@@ -256,7 +256,7 @@ export default function ProfilePage() {
           <span className={lang === 'dr' ? 'font-arabic' : ''}>{t('sign_out')}</span>
         </Button>
 
-        <p className="text-center text-xs text-[#9C9189] mt-6 mb-4">
+        <p className="text-center text-xs text-[#6B7280] mt-6 mb-4">
           Khadamat v1.0 · خدامات
         </p>
       </div>

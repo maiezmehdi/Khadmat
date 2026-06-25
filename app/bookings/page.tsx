@@ -39,12 +39,12 @@ export default function BookingsPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6">
-      <h1 className={`text-2xl font-display font-bold text-[#1A1614] mb-6 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+      <h1 className={`text-2xl font-display font-bold text-[#111827] mb-6 ${lang === 'dr' ? 'font-arabic' : ''}`}>
         {t('bookings')}
       </h1>
 
       {/* Tabs */}
-      <div className="flex bg-[#F7F5F2] rounded-[12px] p-1 mb-6 gap-1">
+      <div className="flex bg-[#F8FAF9] rounded-[12px] p-1 mb-6 gap-1">
         {tabs.map(tab_ => (
           <button
             key={tab_.key}
@@ -52,8 +52,8 @@ export default function BookingsPage() {
             className={cn(
               'flex-1 py-2.5 rounded-[8px] text-sm font-semibold transition-all',
               tab === tab_.key
-                ? 'bg-white text-[#1A1614] shadow-sm'
-                : 'text-[#9C9189] hover:text-[#1A1614]',
+                ? 'bg-white text-[#111827] shadow-sm'
+                : 'text-[#6B7280] hover:text-[#111827]',
               lang === 'dr' ? 'font-arabic' : ''
             )}
           >
@@ -77,7 +77,7 @@ export default function BookingsPage() {
       ) : (
         <div className="text-center py-20">
           <p className="text-5xl mb-4">📋</p>
-          <p className={`text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('no_bookings')}</p>
+          <p className={`text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('no_bookings')}</p>
         </div>
       )}
     </div>
