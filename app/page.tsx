@@ -53,20 +53,20 @@ export default function HomePage() {
                 <>Les pros du quotidien,<br /><span className="text-[#10B981]">à portée de main.</span></>
               )}
             </h1>
-            <p className={`text-[#6B7280] text-lg mb-8 leading-relaxed ${lang === 'dr' ? 'font-arabic' : ''}`}>
+            <p className={`text-white/70 text-lg mb-8 leading-relaxed ${lang === 'dr' ? 'font-arabic' : ''}`}>
               {t('tagline_sub')}
             </p>
 
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="flex gap-3 max-w-xl">
               <div className="flex-1 relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6B7280]" size={20} />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50" size={20} />
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={t('search_placeholder')}
-                  className={`w-full bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-[#6B7280] rounded-[12px] pl-12 pr-4 py-4 text-base focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
+                  className={`w-full bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-white/50 rounded-[12px] pl-12 pr-4 py-4 text-base focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
                 />
               </div>
               <Button type="submit" size="lg" className="flex-shrink-0 px-4 sm:px-8">
@@ -84,7 +84,7 @@ export default function HomePage() {
               ].map(stat => (
                 <div key={stat.label} className="text-center">
                   <p className="text-2xl font-display font-bold text-white">{stat.value}</p>
-                  <p className={`text-xs text-[#6B7280] ${lang === 'dr' ? 'font-arabic' : ''}`}>{stat.label}</p>
+                  <p className={`text-xs text-white/60 ${lang === 'dr' ? 'font-arabic' : ''}`}>{stat.label}</p>
                 </div>
               ))}
             </div>
