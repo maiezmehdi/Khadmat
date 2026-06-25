@@ -14,9 +14,10 @@ interface ProCardProps {
   pro: ProProfile;
   compact?: boolean;
   className?: string;
+  distance?: string;
 }
 
-export function ProCard({ pro, compact = false, className }: ProCardProps) {
+export function ProCard({ pro, compact = false, className, distance }: ProCardProps) {
   const { lang } = useApp();
   const { t } = useTranslation(lang);
   const name = pro.user?.full_name ?? '';
@@ -39,9 +40,14 @@ export function ProCard({ pro, compact = false, className }: ProCardProps) {
         )}>
           <Avatar src={pro.user?.avatar_url} name={name} size="md" online />
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5 flex-wrap">
               <h3 className="font-semibold text-[#1A1614] text-sm truncate">{name}</h3>
               {pro.is_approved && <CheckCircle size={12} className="text-[#27AE60] flex-shrink-0" />}
+              {distance && (
+                <span className="flex items-center gap-0.5 text-[10px] font-semibold text-[#F5A623] bg-[#F5A623]/10 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                  <MapPin size={8} />{distance}
+                </span>
+              )}
             </div>
             <div className="flex items-center gap-1 text-xs text-[#9C9189] mt-0.5">
               <MapPin size={10} /><span className="truncate">{city}</span>

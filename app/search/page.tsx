@@ -2,9 +2,9 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, SlidersHorizontal, X } from 'lucide-react';
+import { Search, SlidersHorizontal, X, Map, List, MapPin } from 'lucide-react';
 import { ProCard } from '@/components/blocks/ProCard';
-import { CategoryGrid } from '@/components/blocks/CategoryGrid';
+import { ProMap } from '@/components/blocks/ProMap';
 import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
 import { useTranslation } from '@/lib/i18n';
@@ -14,6 +14,16 @@ import { cn } from '@/lib/utils';
 
 const CITIES = ['tunis', 'sfax', 'sousse', 'monastir', 'bizerte'];
 const RATINGS = [4, 3, 2];
+const USER_LAT = 36.8065;
+const USER_LNG = 10.1815;
+
+function haversine(lat1: number, lng1: number, lat2: number, lng2: number) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) * 10) / 10;
+}
 
 function SearchContent() {
   const { lang } = useApp();
@@ -27,10 +37,10 @@ function SearchContent() {
   const [sortBy, setSortBy] = useState('rating');
   const [showFilters, setShowFilters] = useState(false);
   const [results, setResults] = useState<ProProfile[]>(PROS);
+  const [view, setView] = useState<'list' | 'map'>('list');
 
   useEffect(() => {
     let filtered = [...PROS];
-
     if (query) {
       const q = query.toLowerCase();
       filtered = filtered.filter(p =>
@@ -39,29 +49,14 @@ function SearchContent() {
         p.bio_dr?.includes(q)
       );
     }
-
     if (category) {
       const cat = CATEGORIES.find(c => c.slug === category);
-      if (cat) {
-        filtered = filtered.filter(p =>
-          p.services?.some(s => s.category_id === cat.id)
-        );
-      }
+      if (cat) filtered = filtered.filter(p => p.services?.some(s => s.category_id === cat.id));
     }
-
-    if (city) {
-      filtered = filtered.filter(p =>
-        p.user?.city?.toLowerCase() === city.toLowerCase()
-      );
-    }
-
-    if (minRating > 0) {
-      filtered = filtered.filter(p => p.rating_avg >= minRating);
-    }
-
+    if (city) filtered = filtered.filter(p => p.user?.city?.toLowerCase() === city.toLowerCase());
+    if (minRating > 0) filtered = filtered.filter(p => p.rating_avg >= minRating);
     if (sortBy === 'rating') filtered.sort((a, b) => b.rating_avg - a.rating_avg);
     else if (sortBy === 'price') filtered.sort((a, b) => (a.services?.[0]?.price_from ?? 999) - (b.services?.[0]?.price_from ?? 999));
-
     setResults(filtered);
   }, [query, category, city, minRating, sortBy]);
 
@@ -70,7 +65,7 @@ function SearchContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Search Bar */}
-      <div className="flex gap-3 mb-6">
+      <div className="flex gap-3 mb-5">
         <div className="flex-1 relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9C9189]" size={18} />
           <input
@@ -88,7 +83,6 @@ function SearchContent() {
           className="flex-shrink-0 relative"
         >
           <SlidersHorizontal size={18} />
-          {!showFilters && <span className="hidden sm:inline">{lang === 'dr' ? 'فلاتر' : 'Filtres'}</span>}
           {activeFiltersCount > 0 && (
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#E8472A] text-white text-[10px] rounded-full flex items-center justify-center">
               {activeFiltersCount}
@@ -99,136 +93,111 @@ function SearchContent() {
 
       {/* Filters Panel */}
       {showFilters && (
-        <div className="bg-white rounded-[16px] border border-[#E0DDD8] p-5 mb-6">
+        <div className="bg-white rounded-[16px] border border-[#E0DDD8] p-5 mb-5">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {/* City */}
             <div>
-              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
-                {t('filter_city')}
-              </label>
-              <select
-                value={city}
-                onChange={e => setCity(e.target.value)}
-                className="w-full bg-[#F7F5F2] border border-[#E0DDD8] rounded-[8px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]"
-              >
+              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('filter_city')}</label>
+              <select value={city} onChange={e => setCity(e.target.value)} className="w-full bg-[#F7F5F2] border border-[#E0DDD8] rounded-[8px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F5A623]">
                 <option value="">{t('all_cities')}</option>
                 {CITIES.map(c => <option key={c} value={c}>{t(c as 'tunis')}</option>)}
               </select>
             </div>
-
-            {/* Min Rating */}
             <div>
-              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
-                {t('filter_rating')}
-              </label>
+              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('filter_rating')}</label>
               <div className="flex gap-2">
                 {RATINGS.map(r => (
-                  <button
-                    key={r}
-                    onClick={() => setMinRating(minRating === r ? 0 : r)}
-                    className={cn(
-                      'px-3 py-1.5 rounded-full text-sm font-medium border transition-colors',
-                      minRating === r
-                        ? 'bg-[#1A1614] text-white border-[#1A1614]'
-                        : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]'
-                    )}
-                  >
+                  <button key={r} onClick={() => setMinRating(minRating === r ? 0 : r)} className={cn('px-3 py-1.5 rounded-full text-sm font-medium border transition-colors', minRating === r ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}>
                     {r}+ ★
                   </button>
                 ))}
               </div>
             </div>
-
-            {/* Sort */}
             <div>
-              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
-                {t('sort_by')}
-              </label>
+              <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('sort_by')}</label>
               <div className="flex gap-2 flex-wrap">
-                {[
-                  { key: 'rating', label: t('sort_rating') },
-                  { key: 'price', label: t('sort_price') },
-                ].map(s => (
-                  <button
-                    key={s.key}
-                    onClick={() => setSortBy(s.key)}
-                    className={cn(
-                      'px-3 py-1.5 rounded-full text-sm font-medium border transition-colors',
-                      sortBy === s.key
-                        ? 'bg-[#1A1614] text-white border-[#1A1614]'
-                        : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]'
-                    )}
-                  >
+                {[{ key: 'rating', label: t('sort_rating') }, { key: 'price', label: t('sort_price') }].map(s => (
+                  <button key={s.key} onClick={() => setSortBy(s.key)} className={cn('px-3 py-1.5 rounded-full text-sm font-medium border transition-colors', sortBy === s.key ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}>
                     {s.label}
                   </button>
                 ))}
               </div>
             </div>
           </div>
-
           {activeFiltersCount > 0 && (
-            <button
-              onClick={() => { setCity(''); setMinRating(0); setCategory(''); }}
-              className="flex items-center gap-1 text-sm text-[#E8472A] mt-4"
-            >
-              <X size={14} /> Réinitialiser les filtres
+            <button onClick={() => { setCity(''); setMinRating(0); setCategory(''); }} className="flex items-center gap-1 text-sm text-[#E8472A] mt-4">
+              <X size={14} /> {lang === 'dr' ? 'إعادة الضبط' : 'Réinitialiser'}
             </button>
           )}
         </div>
       )}
 
       {/* Category chips */}
-      <div className="mb-6">
-        <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1 mb-5">
+        <button
+          onClick={() => setCategory('')}
+          className={cn('flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors', !category ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}
+        >
+          {lang === 'dr' ? 'الكل' : 'Tous'}
+        </button>
+        {CATEGORIES.map(cat => (
           <button
-            onClick={() => setCategory('')}
-            className={cn(
-              'flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors',
-              !category
-                ? 'bg-[#1A1614] text-white border-[#1A1614]'
-                : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]'
-            )}
+            key={cat.slug}
+            onClick={() => setCategory(category === cat.slug ? '' : cat.slug)}
+            className={cn('flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-colors', category === cat.slug ? 'bg-[#1A1614] text-white border-[#1A1614]' : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]')}
           >
-            {lang === 'dr' ? 'الكل' : 'Tous'}
+            <span>{cat.icon}</span>
+            <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? cat.name_dr : cat.name_fr}</span>
           </button>
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat.slug}
-              onClick={() => setCategory(category === cat.slug ? '' : cat.slug)}
-              className={cn(
-                'flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-colors',
-                category === cat.slug
-                  ? 'bg-[#1A1614] text-white border-[#1A1614]'
-                  : 'bg-white text-[#9C9189] border-[#E0DDD8] hover:border-[#1A1614]'
-              )}
-            >
-              <span>{cat.icon}</span>
-              <span className={lang === 'dr' ? 'font-arabic' : ''}>
-                {lang === 'dr' ? cat.name_dr : cat.name_fr}
-              </span>
-            </button>
-          ))}
-        </div>
+        ))}
       </div>
 
-      {/* Results */}
+      {/* Results header + view toggle */}
       <div className="flex items-center justify-between mb-4">
         <p className={`text-sm text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>
           <span className="font-semibold text-[#1A1614]">{results.length}</span> {t('results_found')}
         </p>
+        <div className="flex items-center bg-white border border-[#E0DDD8] rounded-[10px] p-1 gap-1">
+          <button
+            onClick={() => setView('list')}
+            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-all', view === 'list' ? 'bg-[#1A1614] text-white' : 'text-[#9C9189] hover:text-[#1A1614]')}
+          >
+            <List size={14} />
+            <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? 'قائمة' : 'Liste'}</span>
+          </button>
+          <button
+            onClick={() => setView('map')}
+            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-all', view === 'map' ? 'bg-[#1A1614] text-white' : 'text-[#9C9189] hover:text-[#1A1614]')}
+          >
+            <Map size={14} />
+            <span className={lang === 'dr' ? 'font-arabic' : ''}>{lang === 'dr' ? 'خريطة' : 'Carte'}</span>
+          </button>
+        </div>
       </div>
 
-      {results.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {results.map(pro => (
-            <ProCard key={pro.id} pro={pro} />
-          ))}
+      {/* Map View */}
+      {view === 'map' && (
+        <div className="rounded-[20px] overflow-hidden border border-[#E0DDD8] shadow-sm" style={{ height: 'calc(100vh - 320px)', minHeight: '400px' }}>
+          <ProMap pros={results} lang={lang} />
         </div>
-      ) : (
-        <div className="text-center py-20">
-          <p className="text-4xl mb-4">🔍</p>
-          <p className={`text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('no_pros_found')}</p>
-        </div>
+      )}
+
+      {/* List View */}
+      {view === 'list' && (
+        results.length > 0 ? (
+          <div className="flex flex-col gap-3">
+            {results.map(pro => {
+              const dist = pro.lat && pro.lng ? haversine(USER_LAT, USER_LNG, pro.lat, pro.lng) : null;
+              return (
+                <ProCard key={pro.id} pro={pro} compact distance={dist !== null ? `${dist} km` : undefined} />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <p className="text-4xl mb-4">🔍</p>
+            <p className={`text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>{t('no_pros_found')}</p>
+          </div>
+        )
       )}
     </div>
   );

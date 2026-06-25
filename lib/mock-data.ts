@@ -35,6 +35,8 @@ export const PROS: ProProfile[] = [
     rating_count: 127,
     response_time: 15,
     radius_km: 15,
+    lat: 36.8188,
+    lng: 10.1664,
     services: [
       { id: 's1', pro_id: '1', category_id: '1', price_from: 40, price_to: 150, price_unit: 'heure', is_active: true },
     ],
@@ -62,6 +64,8 @@ export const PROS: ProProfile[] = [
     rating_count: 89,
     response_time: 20,
     radius_km: 20,
+    lat: 36.8565,
+    lng: 10.2384,
     services: [
       { id: 's2', pro_id: '2', category_id: '2', price_from: 50, price_to: 200, price_unit: 'forfait', is_active: true },
     ],
@@ -89,6 +93,8 @@ export const PROS: ProProfile[] = [
     rating_count: 203,
     response_time: 10,
     radius_km: 10,
+    lat: 36.7992,
+    lng: 10.1713,
     services: [
       { id: 's3', pro_id: '3', category_id: '3', price_from: 25, price_to: 80, price_unit: 'heure', is_active: true },
     ],
@@ -116,6 +122,8 @@ export const PROS: ProProfile[] = [
     rating_count: 56,
     response_time: 30,
     radius_km: 25,
+    lat: 36.8425,
+    lng: 10.1256,
     services: [
       { id: 's4', pro_id: '4', category_id: '4', price_from: 100, price_to: 500, price_unit: 'forfait', is_active: true },
     ],
@@ -143,6 +151,8 @@ export const PROS: ProProfile[] = [
     rating_count: 74,
     response_time: 25,
     radius_km: 30,
+    lat: 36.7780,
+    lng: 10.2445,
     services: [
       { id: 's5', pro_id: '5', category_id: '6', price_from: 80, price_to: 300, price_unit: 'forfait', is_active: true },
     ],
@@ -170,6 +180,8 @@ export const PROS: ProProfile[] = [
     rating_count: 112,
     response_time: 12,
     radius_km: 20,
+    lat: 36.8925,
+    lng: 10.2580,
     services: [
       { id: 's6', pro_id: '6', category_id: '8', price_from: 30, price_to: 100, price_unit: 'heure', is_active: true },
     ],
