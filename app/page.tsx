@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, Star, Shield, Clock, ChevronRight, ArrowRight } from 'lucide-react';
-import { motion, type Variants } from 'framer-motion';
+import { Search, Star, Shield, Clock, ChevronRight, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { CategoryGrid } from '@/components/blocks/CategoryGrid';
 import { CategoryIcon } from '@/components/ui/CategoryIcon';
 import { ProCard } from '@/components/blocks/ProCard';
@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
 import { useTranslation } from '@/lib/i18n';
 import { CATEGORIES, PROS, INDICATIVE_PRICES } from '@/lib/mock-data';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 const fadeUp: Variants = {
@@ -25,11 +25,21 @@ const stagger: Variants = {
 
 const inView = { initial: 'hidden', whileInView: 'visible' as const, viewport: { once: true, margin: '-60px' } };
 
+interface AiSuggestion {
+  category: string | null;
+  confidence: 'high' | 'medium' | 'low';
+  label_fr?: string;
+  label_dr?: string;
+}
+
 export default function HomePage() {
   const { lang } = useApp();
   const { t } = useTranslation(lang);
   const router = useRouter();
   const [query, setQuery] = useState('');
+  const [aiSuggestion, setAiSuggestion] = useState<AiSuggestion | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !localStorage.getItem('onboarding_done')) {
@@ -37,9 +47,48 @@ export default function HomePage() {
     }
   }, [router]);
 
+  const fetchAiSuggestion = useCallback(async (q: string) => {
+    if (q.trim().length < 3) {
+      setAiSuggestion(null);
+      return;
+    }
+    setAiLoading(true);
+    try {
+      const res = await fetch('/api/search-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: q }),
+      });
+      const data = await res.json();
+      setAiSuggestion(data.category ? data : null);
+    } catch {
+      setAiSuggestion(null);
+    } finally {
+      setAiLoading(false);
+    }
+  }, []);
+
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setQuery(val);
+    setAiSuggestion(null);
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => fetchAiSuggestion(val), 700);
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/search?q=${encodeURIComponent(query)}`);
+    if (aiSuggestion?.category && aiSuggestion.confidence !== 'low') {
+      router.push(`/search?category=${aiSuggestion.category}&q=${encodeURIComponent(query)}`);
+    } else {
+      router.push(`/search?q=${encodeURIComponent(query)}`);
+    }
+  };
+
+  const handleSuggestionClick = () => {
+    if (aiSuggestion?.category) {
+      router.push(`/search?category=${aiSuggestion.category}&q=${encodeURIComponent(query)}`);
+    }
   };
 
   const featuredPros = PROS.slice(0, 4);
@@ -75,11 +124,15 @@ export default function HomePage() {
             <motion.form variants={fadeUp} onSubmit={handleSearch} className="max-w-xl">
               <div className="flex items-center bg-white rounded-[16px] shadow-2xl gap-2 pr-2">
                 <div className={`flex items-center gap-3 flex-1 px-4 py-3.5 ${lang === 'dr' ? 'flex-row-reverse' : ''}`}>
-                  <Search size={20} className="text-[#9CA3AF] flex-shrink-0" />
+                  {aiLoading ? (
+                    <Loader2 size={20} className="text-[#10B981] flex-shrink-0 animate-spin" />
+                  ) : (
+                    <Search size={20} className="text-[#9CA3AF] flex-shrink-0" />
+                  )}
                   <input
                     type="text"
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={handleQueryChange}
                     placeholder={t('search_placeholder')}
                     className={`flex-1 bg-transparent text-[#111827] placeholder:text-[#9CA3AF] text-base outline-none min-w-0 ${lang === 'dr' ? 'text-right font-arabic' : ''}`}
                   />
@@ -92,6 +145,37 @@ export default function HomePage() {
                   <ArrowRight size={17} />
                 </button>
               </div>
+              {/* AI Suggestion */}
+              <AnimatePresence>
+                {aiSuggestion?.category && (
+                  <motion.button
+                    type="button"
+                    onClick={handleSuggestionClick}
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -4, scale: 0.97 }}
+                    transition={{ duration: 0.2 }}
+                    className="mt-2 flex items-center gap-2 bg-[#10B981]/15 hover:bg-[#10B981]/25 border border-[#10B981]/30 text-white rounded-[12px] px-3 py-2 text-sm transition-colors w-full text-left"
+                  >
+                    <Sparkles size={14} className="text-[#10B981] flex-shrink-0" />
+                    <span className="text-white/80 text-xs">
+                      {lang === 'dr' ? 'الذكاء الاصطناعي يقترح:' : 'IA suggère :'}
+                    </span>
+                    <span className={`font-semibold text-white flex items-center gap-1.5 ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                      {(() => {
+                        const cat = CATEGORIES.find(c => c.slug === aiSuggestion.category);
+                        return (
+                          <>
+                            {cat && <CategoryIcon slug={cat.slug} size={13} color="#10B981" />}
+                            {lang === 'dr' ? (aiSuggestion.label_dr || cat?.name_dr) : (aiSuggestion.label_fr || cat?.name_fr)}
+                          </>
+                        );
+                      })()}
+                    </span>
+                    <ArrowRight size={13} className="text-[#10B981] ml-auto flex-shrink-0" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
             </motion.form>
 
             {/* Stats */}
