@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { CheckCircle, Upload, ArrowLeft } from 'lucide-react';
+import { CheckCircle, Upload, ArrowLeft, Camera, User } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
@@ -24,6 +24,20 @@ export default function RegisterProPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState<string | undefined>();
+  const [coverPreview, setCoverPreview] = useState<string | undefined>();
+  const avatarRef = useRef<HTMLInputElement>(null);
+  const coverRef = useRef<HTMLInputElement>(null);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setAvatarPreview(URL.createObjectURL(file));
+  };
+
+  const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setCoverPreview(URL.createObjectURL(file));
+  };
 
   const toggleCategory = (slug: string) => {
     setSelectedCategories(prev =>
@@ -62,7 +76,7 @@ export default function RegisterProPage() {
   const stepIndex = STEPS.indexOf(step);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 pb-24">
       <button onClick={() => router.back()} className="flex items-center gap-2 text-[#9C9189] hover:text-[#1A1614] mb-6">
         <ArrowLeft size={18} />
         <span className="text-sm">{t('back')}</span>
@@ -100,6 +114,65 @@ export default function RegisterProPage() {
           <h2 className={`font-semibold text-[#1A1614] ${lang === 'dr' ? 'font-arabic' : ''}`}>
             {lang === 'dr' ? '1. معلوماتك الشخصية' : '1. Vos informations'}
           </h2>
+
+          {/* Cover photo */}
+          <div>
+            <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+              {lang === 'dr' ? 'صورة الغلاف (اختياري)' : 'Photo de couverture (optionnel)'}
+            </label>
+            <div
+              onClick={() => coverRef.current?.click()}
+              className="relative h-32 rounded-[16px] overflow-hidden border-2 border-dashed border-[#E0DDD8] hover:border-[#F5A623] transition-colors cursor-pointer group"
+            >
+              {coverPreview ? (
+                <img src={coverPreview} alt="Cover" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-[#F7F5F2] flex flex-col items-center justify-center gap-2">
+                  <Camera size={24} className="text-[#9C9189] group-hover:text-[#F5A623] transition-colors" />
+                  <span className={`text-xs text-[#9C9189] group-hover:text-[#F5A623] transition-colors ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                    {lang === 'dr' ? 'أضف صورة غلاف' : 'Ajouter une photo de couverture'}
+                  </span>
+                </div>
+              )}
+              {coverPreview && (
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Camera size={24} className="text-white" />
+                </div>
+              )}
+            </div>
+            <input ref={coverRef} type="file" accept="image/*" className="hidden" onChange={handleCoverChange} />
+          </div>
+
+          {/* Avatar */}
+          <div>
+            <label className={`text-sm font-semibold text-[#1A1614] mb-2 block ${lang === 'dr' ? 'font-arabic' : ''}`}>
+              {lang === 'dr' ? 'صورتك الشخصية' : 'Photo de profil'}
+            </label>
+            <div className="flex items-center gap-4">
+              <div
+                onClick={() => avatarRef.current?.click()}
+                className="relative w-20 h-20 rounded-full border-2 border-dashed border-[#E0DDD8] hover:border-[#F5A623] transition-colors cursor-pointer group flex-shrink-0 overflow-hidden"
+              >
+                {avatarPreview ? (
+                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-[#F7F5F2] flex items-center justify-center">
+                    <User size={28} className="text-[#9C9189] group-hover:text-[#F5A623] transition-colors" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
+                  <Camera size={16} className="text-white" />
+                </div>
+              </div>
+              <p className={`text-sm text-[#9C9189] ${lang === 'dr' ? 'font-arabic' : ''}`}>
+                {lang === 'dr'
+                  ? 'صورة واضحة للوجه تزيد من فرص الحجز بـ 70%'
+                  : 'Une bonne photo de profil augmente vos réservations de 70%'}
+              </p>
+            </div>
+            <input ref={avatarRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <Input label={t('first_name')} placeholder="Mohamed" />
             <Input label={t('last_name')} placeholder="Ben Ali" />
@@ -188,7 +261,7 @@ export default function RegisterProPage() {
           </p>
 
           {[
-            { label: lang === 'dr' ? 'صورة البطاقة الوطنية' : 'Carte d\'identité nationale', required: true },
+            { label: lang === 'dr' ? 'صورة البطاقة الوطنية' : "Carte d'identité nationale", required: true },
             { label: lang === 'dr' ? 'سيلفي مع البطاقة' : 'Selfie avec la CIN', required: true },
             { label: lang === 'dr' ? 'وثيقة المهنة (اختياري)' : 'Justificatif de métier (optionnel)', required: false },
           ].map(doc => (
