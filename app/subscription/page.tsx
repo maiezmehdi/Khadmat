@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Check, X, Crown, TrendingUp, Shield, Zap, Headphones, Star, BarChart2, BadgeCheck } from 'lucide-react';
+import { ArrowLeft, Check, X, Crown, TrendingUp, Shield, Zap, Headphones, Star, BarChart2, BadgeCheck, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useApp } from '@/lib/context';
 import { useToast } from '@/components/ui/Toast';
@@ -11,9 +11,25 @@ import { cn } from '@/lib/utils';
 type BillingCycle = 'monthly' | 'annual';
 type PlanId = 'free' | 'basic' | 'premium';
 
-const PLANS = [
+interface Plan {
+  id: PlanId;
+  name_fr: string;
+  name_dr: string;
+  price_monthly: number;
+  price_annual: number;
+  commission: number;
+  color: string;
+  bgClass: string;
+  borderClass: string;
+  icon: LucideIcon;
+  badge_fr?: string;
+  badge_dr?: string;
+  features: { fr: string; dr: string; included: boolean }[];
+}
+
+const PLANS: Plan[] = [
   {
-    id: 'free' as PlanId,
+    id: 'free',
     name_fr: 'Gratuit',
     name_dr: 'مجاني',
     price_monthly: 0,
@@ -22,6 +38,7 @@ const PLANS = [
     color: '#9C9189',
     bgClass: 'bg-white',
     borderClass: 'border-[#E0DDD8]',
+    icon: Shield,
     features: [
       { fr: 'Profil visible dans la recherche', dr: 'ملفك ظاهر في البحث', included: true },
       { fr: 'Accepter des réservations', dr: 'قبول الحجوزات', included: true },
@@ -33,7 +50,7 @@ const PLANS = [
     ],
   },
   {
-    id: 'basic' as PlanId,
+    id: 'basic',
     name_fr: 'Basic',
     name_dr: 'أساسي',
     price_monthly: 30,
@@ -42,6 +59,7 @@ const PLANS = [
     color: '#3B82F6',
     bgClass: 'bg-white',
     borderClass: 'border-[#3B82F6]',
+    icon: TrendingUp,
     badge_fr: 'Populaire',
     badge_dr: 'الأكثر طلباً',
     features: [
@@ -55,7 +73,7 @@ const PLANS = [
     ],
   },
   {
-    id: 'premium' as PlanId,
+    id: 'premium',
     name_fr: 'Premium',
     name_dr: 'بريميوم',
     price_monthly: 60,
@@ -64,6 +82,7 @@ const PLANS = [
     color: '#F5A623',
     bgClass: 'bg-[#1A1614]',
     borderClass: 'border-[#F5A623]',
+    icon: Crown,
     badge_fr: 'Recommandé',
     badge_dr: 'موصى به',
     features: [
@@ -78,7 +97,7 @@ const PLANS = [
   },
 ];
 
-const PERKS = [
+const PERKS: { icon: LucideIcon; fr: string; dr: string }[] = [
   { icon: BadgeCheck, fr: 'Badge vérifié affiché sur votre profil', dr: 'شارة موثوق ظاهرة في ملفك' },
   { icon: TrendingUp, fr: 'Meilleur classement dans les résultats', dr: 'ترتيب أعلى في نتائج البحث' },
   { icon: BarChart2, fr: 'Tableau de bord statistiques complet', dr: 'لوحة إحصائيات شاملة' },
